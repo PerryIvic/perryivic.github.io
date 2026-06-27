@@ -1,0 +1,41 @@
+---
+interface Props {
+  image: string;
+  alt: string;
+}
+
+const { image, alt } = Astro.props;
+---
+<style>
+.project-entry {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    margin: 4rem 0;
+}
+
+.project-entry img {
+  width: 350px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.content :global(h2){
+  flex: 1;
+  font-family: Verdana;
+}
+
+.content :global(p){
+  flex: 1;
+  font-family:  Arial;
+}
+</style>
+
+<section class="project-entry">
+  <img src={image} />
+  <div class="content">
+    <slot />
+  </div>
+</section>
+
