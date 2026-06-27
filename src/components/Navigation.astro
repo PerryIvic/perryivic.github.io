@@ -1,8 +1,36 @@
 ---
+// Fonts:
+//
+// Verdana
+// Futura
 ---
+<style>
+  .nav-list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 10;
+    padding: 0;
+  }
 
-<div id="main-menu" class="nav-links">
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
-</div>
+  .nav-list a {
+    font-family: Verdana;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .nav-list a:hover {
+     color: #66A819;
+  }
+</style>
+
+  <nav>
+    <ul class="nav-list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#archive">Archive</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>

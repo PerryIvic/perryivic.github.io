@@ -1,0 +1,26 @@
+---
+const {name, title} = Astro.props;
+---
+<style>
+    .branding h1 {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1;
+    font-family: Verdana;
+    text-transform: uppercase;
+  }
+
+  .branding h2 {
+    margin: 0.35rem 0 0;
+    color: #888;
+    font-size: 1rem;
+    font-family: Verdana;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+</style>
+
+<div class="branding">
+    <h1>{name}</h1>
+    <h2>{title}</h2>
+</div>

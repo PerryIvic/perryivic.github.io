@@ -1,20 +1,23 @@
 ---
-import Menu from "../components/Menu.astro"
+import Branding from "../components/Branding.astro"
 import Navigation from "../components/Navigation.astro"
-import ThemeIcon from "./ThemeIcon.astro"
+
+const name = "Perry Ivic";
+const title = "Software Developer";
 ---
 
-<nav>
-    <div>
-        <ThemeIcon />
-        <Menu />
-    </div>
-    <Navigation />
-</nav>
-
 <style>
-  div {
+  .header {
     display: flex;
     justify-content: space-between;
-  }
+    align-items: flex-end;
+
+    padding: 1.5rem 3rem;
+    border-bottom: 2px solid #66A819;
+  }  
 </style>
+
+<header class="header">
+  <Branding name={name} title={title}/>
+  <Navigation/>
+</header>
