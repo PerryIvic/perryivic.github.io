@@ -18,9 +18,16 @@ const {name, title} = Astro.props;
     text-transform: uppercase;
     letter-spacing: 0.1em;
   }
+
+  .branding a {
+    color: white;
+    text-decoration: none;
+  }
 </style>
 
 <div class="branding">
+  <a href="/">
     <h1>{name}</h1>
     <h2>{title}</h2>
+  </a>
 </div>
