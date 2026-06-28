@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import EntryIcon from "../assets/entry-border-icon.png"
+
+const alt = "Border icon"
+---
+
+<style>
+.project-wrapper {
+    display: flex;
+    justify-content: center;  /* centers child */
+    width: 100%;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 1.5rem;
+
+    margin: 3rem auto;       /* 👈 important */
+    width: min(900px, 90%);  /* 👈 keeps it from stretching full screen */
+}
+
+.line {
+    border-right: none;
+    flex: 1;
+    height: 1px;
+    background-color: #555;
+}
+
+.divider-image {
+    width: 64px;
+    height: auto;
+}
+</style>
+
+<section class="project-wrapper">
+    <div class="divider">
+        <div class="line"></div>
+
+        <Image src={EntryIcon} alt={alt} class="divider-image" />
+
+        <div class="line"></div>
+    </div>
+</section>

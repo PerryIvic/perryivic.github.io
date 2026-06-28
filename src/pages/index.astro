@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import FrontPage from "../pages/entries/front-page.mdx"
+import FrontPage from "../pages/entries/home-page.mdx";
+import EntryBorder from "../components/EntryBorder.astro";
 
 const pageTitle = "Home";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <FrontPage/>
+  <EntryBorder/>
 </BaseLayout>
