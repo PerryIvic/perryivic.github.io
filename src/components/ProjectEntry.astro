@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
-  image: string;
+  image: ImageMetadata;
   alt: string;
 }
 
@@ -10,15 +12,18 @@ const { image, alt } = Astro.props;
 .project-entry {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 2rem;
 
     margin: 4rem 0;
 }
 
 .project-entry img {
-  width: 350px;
+  height: 450px;
+  width: auto;
   border-radius: 8px;
   flex-shrink: 0;
+  display: block;
 }
 
 .content :global(h2){
@@ -33,7 +38,7 @@ const { image, alt } = Astro.props;
 </style>
 
 <section class="project-entry">
-  <img src={image} alt={alt}/>
+  <Image src={image} alt={alt}/>
   <div class="content">
     <slot />
   </div>
