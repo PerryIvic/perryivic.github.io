@@ -33,7 +33,7 @@ const { image, alt } = Astro.props;
 </style>
 
 <section class="project-entry">
-  <img src={image} />
+  <img src={image} alt={alt}/>
   <div class="content">
     <slot />
   </div>
