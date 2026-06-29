@@ -1,52 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const pageTitle = "About me";
-
-const identity = {
-  firstName: "Sarah",
-  country: "Sweden",
-  occupation: "Technical Engineer",
-  hobbies: ["C++", "Godot", "Games"],
-};
-
-const skills = ["html", "css", "astro"];
-
-const happy = true;
-const finished = true;
-const goal = 1;
-
-const skillColor = "crimson";
-const fontWeight = "bold";
-const textCase = "uppercase"
+const pageTitle = "About";
 ---
 <BaseLayout pageTitle={pageTitle}>
-    <style define:vars={{skillColor, fontWeight, textCase}}>
-      .skill {
-        color:var(--skillColor);
-        font-weight:var(--fontWeight);
-        text-transform: var(--textCase);
-      }
-    </style>
-
-    <h1>{pageTitle}</h1>
-    <h2>... and my astro site</h2>
-    <p>The contents are still in progress. But I am getting there!</p>
-
-    <p>Here are a few facts about me:</p>
-    <ul>
-      <li>My name is {identity.firstName}.</li>
-      <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
-      {identity.hobbies.length >= 2 &&
-        <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
-      }
-    </ul>
-    <p>My skills are:</p>
-    <ul>
-      {skills.map((skill) => <li class="skill">{skill}</li>)}
-    </ul>
-
-    {happy && <p>I am happy to be learning astro</p>}
-    {finished && <p>I finished this tutorial</p>}
-    {goal === 1 ? <p>My goal is to finish in 1 day</p> : <p>My goal is not one day</p>}
+  
 </BaseLayout>
