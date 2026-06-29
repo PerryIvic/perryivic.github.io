@@ -4,40 +4,65 @@ import { Image } from 'astro:assets';
 interface Props {
   image: ImageMetadata;
   alt: string;
+  imageSide?: "left" | "right";
+  imageHeight?: string;
 }
 
-const { image, alt } = Astro.props;
+const { 
+  image, 
+  alt, 
+  imageSide = "left", 
+  imageHeight = "400px"
+  } = Astro.props;
 ---
 <style>
 .project-entry {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
-    margin: 4rem 0;
+    gap: 4rem;
+    margin: 4rem auto;
+    width: min(1000px, 90%)
 }
 
-.project-entry img {
-  height: 450px;
+.project-entry.reverse {
+    flex-direction: row-reverse;
+}
+
+.project-image {
+  height: var(--image-height);
   width: auto;
   border-radius: 8px;
   flex-shrink: 0;
   display: block;
+  border-radius: 32px;
+}
+
+.content {
+    max-width: 500px;
 }
 
 .content :global(h1){
   flex: 1;
   font-family: Verdana;
+  
 }
 
 .content :global(p){
   flex: 1;
   font-family:  Arial;
+  font-size: 18px;
+  line-height: 1.7;
 }
 </style>
 
-<section class="project-entry">
-  <Image src={image} alt={alt}/>
+<section class={`project-entry ${imageSide === "right" ? "reverse" : ""}`}>
+  <Image 
+  src={image} 
+  alt={alt} 
+  class="project-image"
+  style={`height: ${imageHeight}; width: auto;`}
+  />
   <div class="content">
     <slot />
   </div>
