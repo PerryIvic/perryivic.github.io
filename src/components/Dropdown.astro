@@ -1,0 +1,101 @@
+---
+interface Props {
+    href: string;
+    label: string;
+    currentPath: string;
+    items: {
+        href: string;
+        text: string;
+    }[];
+}
+
+const { href, label, currentPath, items } = Astro.props;
+
+// Highlight if we're on the parent page OR one of its children
+const isActive =
+    currentPath === href ||
+    currentPath.startsWith(href + "/");
+---
+
+<style>
+.dropdown {
+    position: relative;
+    list-style: none;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-family: Verdana;
+    color: inherit;
+    min-width: 200px;
+     list-style: none;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+
+
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 8px;
+
+    padding: 0.5rem 0;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+}
+
+.dropdown a {
+    position: relative;
+    list-style: none;
+    text-decoration: none;
+    font-family: Verdana;
+    color: inherit;
+}
+
+.dropdown a.active {
+    color: #66A819;
+}
+
+</style>
+
+<li class="dropdown">
+    <a
+        href={href}
+        class={isActive ? "active" : ""}
+    >
+        {label}
+    </a>
+
+    <ul class="dropdown-menu">
+        {items.map(item => (
+            <li>
+                <a
+                    href={item.href}
+                    class={currentPath === item.href ? "active" : ""}
+                >
+                    {item.text}
+                </a>
+            </li>
+        ))}
+    </ul>
+</li>
+
+

@@ -1,4 +1,5 @@
 ---
+import Dropdown from "./Dropdown.astro";
 const currentPath = Astro.url.pathname;
 
 const links = [
@@ -36,16 +37,43 @@ const links = [
 </style>
 
 <nav>
-  <ul class="nav-list">
-    {links.map(link => (
-      <li>
-        <a
-          href={link.href}
-          class={currentPath === link.href ? "active" : ""}
-        >
-          {link.label}
-        </a>
-      </li>
-    ))}
-  </ul>
+    <ul class="nav-list">
+        <li>
+            <a
+                href="/"
+                class={currentPath === "/" ? "active" : ""}
+            >
+                Home
+            </a>
+        </li>
+
+        <Dropdown
+            href="/projects"
+            label="Projects"
+            currentPath={currentPath}
+            items={[
+                { href: "/projects/soft-body-physics", text: "Soft Body Physics" },
+                { href: "/projects/mesh-slicer", text: "Mesh Slicer" }
+            ]}
+        />
+
+        <Dropdown
+            href="/archive"
+            label="Archive"
+            currentPath={currentPath}
+            items={[
+                { href: "/archive/tga-projects", text: "TGA Projects" },
+                { href: "/archive/game-jams", text: "Game Jams" }
+            ]}
+        />
+
+        <li>
+            <a
+                href="/about"
+                class={currentPath === "/about" ? "active" : ""}
+            >
+                About
+            </a>
+        </li>
+    </ul>
 </nav>
