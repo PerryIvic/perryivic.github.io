@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
     href: string;
     label: string;
@@ -62,24 +64,15 @@ const isActive =
     text-decoration: none;
 }
 
-.dropdown a {
-    position: relative;
-    list-style: none;
-    text-decoration: none;
-    font-family: Verdana;
-    color: inherit;
-}
-
-.dropdown a.active {
-    color: #66A819;
-}
-
 </style>
 
 <li class="dropdown">
     <a
         href={href}
-        class={isActive ? "active" : ""}
+        class:list={[
+            "nav-link",
+            { active: isActive }
+        ]}
     >
         {label}
     </a>
@@ -89,7 +82,10 @@ const isActive =
             <li>
                 <a
                     href={item.href}
-                    class={currentPath === item.href ? "active" : ""}
+                    class:list={[
+                        "nav-link",
+                        { active: currentPath === item.href }
+                    ]}
                 >
                     {item.text}
                 </a>
