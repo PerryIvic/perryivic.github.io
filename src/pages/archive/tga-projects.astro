@@ -2,14 +2,16 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import EntryBorder from "../../components/EntryBorder.astro";
 import ProjectGrid from "../../components/ProjectGrid.astro";
-import { featuredProjects } from "../../project-data/tga-projects.ts";
+import { projects2x2 } from "../../project-data/tga-projects-2x2.ts";
+import { projects3x3 } from "../../project-data/tga-projects-3x3.ts";
 import { specializations } from "../../project-data/tga-specialization.ts"
 
 const pageTitle = "Home";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <ProjectGrid projects={featuredProjects}/>
+    <ProjectGrid projects={projects2x2} columns={2}/>
+    <ProjectGrid projects={projects3x3} columns={3}/>
     <EntryBorder/>
-    <ProjectGrid projects={specializations}/>
+    <ProjectGrid projects={specializations} columns={1}/>
 </BaseLayout>
