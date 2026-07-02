@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EntryBorder from "../../components/EntryBorder.astro";
+import ProjectGrid from "../../components/ProjectGrid.astro";
+import { featuredProjects } from "../../project-data/tga-projects.ts";
+import { specializations } from "../../project-data/tga-specialization.ts"
+
+const pageTitle = "Home";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <ProjectGrid projects={featuredProjects}/>
+    <EntryBorder/>
+    <ProjectGrid projects={specializations}/>
+</BaseLayout>

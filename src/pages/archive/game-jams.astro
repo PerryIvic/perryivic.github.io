@@ -1,8 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectGrid from "../../components/ProjectGrid.astro";
+import { featuredProjects } from "../../project-data/game-jam-projects.ts";
 
 const pageTitle = "Home";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
+    <ProjectGrid projects={featuredProjects}/>
 </BaseLayout>
