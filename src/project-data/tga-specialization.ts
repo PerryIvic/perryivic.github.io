@@ -1,8 +1,8 @@
-import icon from "../assets/entry-border-icon.png";
+import ShotgunParkourImage from "../assets/tga-projects/shotgun-parkour.png";
 
 export const specializations = [
     {
-        image: icon,
+        image: ShotgunParkourImage,
         title: "SHOTGUN PARKOUR",
         subtitle: "C++ • OpenGL",
         href: "/projects/soft-body-physics"
