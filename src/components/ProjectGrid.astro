@@ -1,0 +1,41 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import icon from "../assets/entry-border-icon.png";
+
+interface Project {
+  image: ImageMetadata;
+  title: string;
+  subtitle: string;
+  href: string;
+}
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<style>
+.grid {
+    width: min(1600px, 90%);
+    margin: 4rem auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+    gap: 2rem;
+}
+</style>
+
+<div class="grid">
+  {projects.map(project => (
+    <ProjectCard
+      image={project.image}
+      title={project.title}
+      subtitle={project.subtitle}
+      href={project.href}
+    />
+  ))}
+</div>
