@@ -1,16 +1,10 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
 import type { ImageMetadata } from "astro";
-
-interface Project {
-    title: string;
-    subtitle: string;
-    href: string;
-    image: ImageMetadata;
-}
+import type { ProjectData } from "../types/project-data";
 
 interface Props {
-    projects: Project[];
+    projects: ProjectData[];
     columns?: 1 | 2 | 3;
 }
 
@@ -18,14 +12,12 @@ const {
     projects,
     columns = 3
 } = Astro.props;
-
-const imageSize = columns === 2 ? 700 : 500;
 ---
 <style>
 .grid {
     display: grid;
 
-    width: min(1600px, 95%);
+    width: min(1400px, 95%);
     margin: 2rem auto;
 
     justify-content: center;
@@ -49,7 +41,7 @@ const imageSize = columns === 2 ? 700 : 500;
     {projects.map(project => (
         <ProjectCard
             project={project}
-            imageSize={imageSize}
+            objectFit={project.objectFit}
         />
     ))}
 </div>

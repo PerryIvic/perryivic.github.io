@@ -1,23 +1,18 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
-
-interface Project {
-    title: string;
-    subtitle: string;
-    href: string;
-    image: ImageMetadata;
-}
+import type { ProjectData } from "../types/project-data";
 
 interface Props {
-    project: Project;
-    imageSize: number;
+    project: ProjectData;
+    objectFit: string;
 }
 
-const { project, imageSize } = Astro.props;
+const { project } = Astro.props;
 ---
 <style>
 .card {
+    width: 100%;
     text-decoration: none;
     color: inherit;
     overflow: hidden;
@@ -29,22 +24,36 @@ const { project, imageSize } = Astro.props;
     transform: scale(1.05);
 }
 
+.card-image-container {
+    height: 500px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: black;
+    overflow: hidden;
+}
+
 .card-image {
     width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    height: 100%;
 
+    background: black;
+    display: block;
     border-radius: 12px;
 }
 </style>
 
 <a href={project.href} class="card">
-    <Image
-        src={project.image}
-        alt={project.title}
-        width={imageSize}
-        height={imageSize}
-        class="card-image"
-    />
+    <div class="card-image-container">
+        <Image
+            src={project.image}
+            alt={project.title}
+            style={`object-fit: ${project.objectFit};`}
+            class="card-image"
+        />
+    </div>
 </a>
 

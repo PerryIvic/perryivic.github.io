@@ -7,18 +7,21 @@ export const projects3x3 = [
         image: TrespasserImage,
         title: "Trespasser",
         subtitle: "C++ • OpenGL",
-        href: "/projects/soft-body-physics"
+        href: "/projects/soft-body-physics",
+        objectFit: "cover"
     },
     {
         image: DieOrDieImage,
         title: "Die or Die",
         subtitle: "C++ • OpenGL",
-        href: "/projects/mesh-slicer"
+        href: "/projects/mesh-slicer",
+        objectFit: "cover"
     },
     {
         image: LetThemEatFistImage,
         title: "Let Them Eat Fist",
         subtitle: "C++ • OpenGL",
-        href: "/projects/soft-body-physics"
+        href: "/projects/soft-body-physics",
+        objectFit: "cover"
     },
 ];
