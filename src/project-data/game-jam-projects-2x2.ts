@@ -6,14 +6,14 @@ export const projects2x2 = [
         image: LootGoblinImage,
         title: "Loot Goblin",
         subtitle: "C++ • OpenGL",
-        href: "/projects/soft-body-physics",
+        href: "/archive/game-jams/loot-goblin",
         objectFit: "cover"
     },
     {
         image: DragonHordeImage,
         title: "Dragon Horde",
         subtitle: "C++ • OpenGL",
-        href: "/projects/mesh-slicer",
+        href: "/pages/archive/game-jams/dragon-horde",
         objectFit: "cover"
     },
 ];
