@@ -5,12 +5,11 @@ import ProjectGrid from "../../../components/ProjectGrid.astro";
 import { projects2x2 } from "../../../project-data/game-jam-projects-2x2.ts";
 import { projects3x3 } from "../../../project-data/game-jam-projects-3x3.ts";
 
-const pageTitle = "Home";
-const gameJamTitle = "Game Jams";
+const pageTitle = "Game Jams";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <h1 class="header-project">{gameJamTitle}</h1>
+    <h1 class="header-project">{pageTitle}</h1>
     <ProjectGrid projects={projects2x2} columns={2}/>
     <ProjectGrid projects={projects3x3} columns={3}/>
 </BaseLayout>
