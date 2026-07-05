@@ -1,17 +1,24 @@
-import ProjectEntry from "../components/ProjectEntry.astro";
+import { Image } from "astro:assets";
+import '../styles/content.css'; 
+
+import MediaEntry from "../layouts/MediaEntry.astro";
 import EntryBorder from "../components/EntryBorder.astro";
 import ProfilePictureFull from "../assets/profile-picture-full-size.png"
 
-<ProjectEntry
-  image={ProfilePictureFull}
-  alt="Picture of me, but big! :3"
-  imageSide="right"
-  imageHeight="600px"
->
+<MediaEntry mediaSide="right">
+<div slot="media">
+<Image
+    src={ProfilePictureFull}
+    alt="Picture of me, but big! :3"
+    class="media-image"
+/>
+</div>
 
+<div slot="content">
 # A bit about me
 
 Hi, my name is Perry and I'm one of those people with “extra” in their personality (in a good way). I like to make people laugh and challenge myself by learning something new.
+</div>
 
-</ProjectEntry>
+</MediaEntry>
 <EntryBorder/>
