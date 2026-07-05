@@ -1,0 +1,37 @@
+---
+interface Props {
+    mediaSide?: "left" | "right";
+}
+
+const {
+    mediaSide = "left"
+} = Astro.props;
+---
+
+<style>
+.media-entry {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: min(1400px, 90%);
+    
+    gap: 1rem;
+    margin: 1rem auto;
+}
+
+.reverse {
+    flex-direction: row-reverse;
+}
+
+</style>
+
+<section class:list={["media-entry", mediaSide === "right" && "reverse"]}>
+    <div class="media">
+        <slot name="media" />
+    </div>
+
+    <div class="content">
+        <slot name="content"/>
+    </div>
+</section>
