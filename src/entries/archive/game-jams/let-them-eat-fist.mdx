@@ -1,0 +1,71 @@
+import { Image } from "astro:assets";
+import '../../../styles/content.css'; 
+
+import MediaEntry from "../../../layouts/MediaEntry.astro";
+import EntryBorder from "../../../components/EntryBorder.astro";
+import MediaImage from "../../../assets/game-jams/let-them-eat-fist.png"
+import AwardImage from "../../../assets/game-jams/princess-jam-awards.png"
+
+
+<MediaEntry mediaSide="right">
+<div slot="media">
+<Image
+    src={MediaImage}
+    alt="Let Them Eat Fist"
+    class="media-image"
+/>
+<iframe
+    src="https://itch.io/embed/1537373?bg_color=363636&amp;fg_color=ffffff&amp;link_color=66c750&amp;border_color=000000" width="552" height="167"
+/>
+</div>
+
+<div slot="content">
+# Let Them Eat Fist
+Event: The Game Assembly Game Jam 2022 <br/>
+Theme: "Princess" <br/>
+Project Time: 36 hours <br/>
+Team Size: 6 <br/>
+Engine: Unity <br/>
+## Contributions
+- Sound Design
+- Camera Shake
+- Main Menu Theme
+</div>
+
+</MediaEntry>
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<div slot="media">
+<Image
+    src={AwardImage}
+    alt="Princess Jam Awards"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+
+## Back Story
+This was my first game jam and I was very excited and a bit anxious 
+as I expected a lot of game jam horror stories to reincarnate in 
+the form of an ungodly amount of crunch. Thankfully it didn't happen, 
+on the second day we did spend a bunch of extra hours into the night 
+but I had fun so I didn't mind.
+
+As it was my first game jam I took on tasks like sound design and 
+the creating of the main menu theme along with minor programming tasks 
+that wouldn't bottleneck anyone. Almost every playable character or enemy 
+in the game was voiced by their respective selves in a fun persona. 
+I was doing the recording and edited all sound effects to sound old 
+and crunchy.
+
+After we finished our game we setup a gaming station in the school 
+and let all students and teachers enjoy our game. It was really 
+heartwarming to see people genuinely having fun with something 
+you made. It reminded me why I wanted to be a game developer 
+and will be a source motivation for years to come.
+</div>
+
+</MediaEntry>
+<EntryBorder/>

@@ -13,7 +13,7 @@ export const projects2x2 = [
         image: DragonHordeImage,
         title: "Dragon Horde",
         subtitle: "C++ • OpenGL",
-        href: "/pages/archive/game-jams/dragon-horde",
+        href: "/archive/game-jams/dragon-horde",
         objectFit: "cover"
     },
 ];
