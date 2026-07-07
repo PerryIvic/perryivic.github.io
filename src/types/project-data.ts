@@ -5,5 +5,6 @@ export interface ProjectData {
     subtitle: string;
     href: string;
     image: ImageMetadata;
+    video?: string;
     objectFit: string;
 }

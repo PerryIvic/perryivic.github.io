@@ -2,10 +2,10 @@
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import type { ProjectData } from "../types/project-data";
+import HoverPreview from "./HoverPreview.astro";
 
 interface Props {
     project: ProjectData;
-    objectFit: string;
 }
 
 const { project } = Astro.props;
@@ -48,11 +48,8 @@ const { project } = Astro.props;
 
 <a href={project.href} class="card">
     <div class="card-image-container">
-        <Image
-            src={project.image}
-            alt={project.title}
-            style={`object-fit: ${project.objectFit};`}
-            class="card-image"
+        <HoverPreview
+            project={project}
         />
     </div>
 </a>

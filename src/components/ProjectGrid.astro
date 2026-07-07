@@ -1,6 +1,5 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
-import type { ImageMetadata } from "astro";
 import type { ProjectData } from "../types/project-data";
 
 interface Props {
@@ -41,7 +40,6 @@ const {
     {projects.map(project => (
         <ProjectCard
             project={project}
-            objectFit={project.objectFit}
         />
     ))}
 </div>
