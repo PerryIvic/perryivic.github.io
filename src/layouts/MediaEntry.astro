@@ -12,16 +12,37 @@ const {
 .media-entry {
     display: flex;
     align-items: center;
-    justify-content: center;
 
     width: min(1300px, 90%);
-    
-    gap: 6rem;
     margin: 1rem auto;
+    gap: 3rem;
+}
+
+.media,
+.content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+}
+
+.media {
+    justify-content: flex-end;
+}
+
+.content {
+    justify-content: flex-start;
 }
 
 .reverse {
     flex-direction: row-reverse;
+}
+
+.reverse .media {
+    justify-content: flex-start;
+}
+
+.reverse .content {
+    justify-content: flex-end;
 }
 
 </style>
