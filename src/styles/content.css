@@ -20,7 +20,13 @@
     color: #66A819;
 }
 
-.content p,
+.content p {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 1.0rem;
+}
+
 .content li {
     font-family: Consolas, "Courier New", monospace;
     font-size: 20px;
