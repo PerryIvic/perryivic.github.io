@@ -1,5 +1,5 @@
-import WithoutATraceImage from "../assets/tga-projects/without-a-trace.png"
-import ProcyonImage from "../assets/tga-projects/procygon.png"
+import WithoutATraceImage from "../../assets/tga-projects/without-a-trace.png"
+import ProcyonImage from "../../assets/tga-projects/procygon.png"
 
 export const projects2x2 = [
     {

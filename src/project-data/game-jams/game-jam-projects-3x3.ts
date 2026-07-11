@@ -1,6 +1,6 @@
-import TrespasserImage from "../assets/game-jams/trespasser.png"
-import DieOrDieImage from "../assets/game-jams/die-or-die.png"
-import LetThemEatFistImage from "../assets/game-jams/let-them-eat-fist.png"
+import TrespasserImage from "../../assets/game-jams/trespasser.png"
+import DieOrDieImage from "../../assets/game-jams/die-or-die.png"
+import LetThemEatFistImage from "../../assets/game-jams/let-them-eat-fist.png"
 
 export const projects3x3 = [
     {

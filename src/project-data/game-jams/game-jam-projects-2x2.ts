@@ -1,5 +1,5 @@
-import DragonHordeImage from "../assets/game-jams/dragon-horde.png"
-import LootGoblinImage from "../assets/game-jams/loot-goblin.png"
+import DragonHordeImage from "../../assets/game-jams/dragon-horde.png"
+import LootGoblinImage from "../../assets/game-jams/loot-goblin.png"
 
 export const projects2x2 = [
     {

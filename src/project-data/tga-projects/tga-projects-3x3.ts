@@ -1,9 +1,9 @@
-import SpiteSerpentideImage from "../assets/tga-projects/spite serpentide.png"
-import ThorwaldsLamentImage from "../assets/tga-projects/thorwalds-lament.png"
-import ZombieImage from "../assets/tga-projects/zombie.png"
-import StakeOutImage from "../assets/tga-projects/stake-out.png"
-import AChristMasCarrotImage from "../assets/tga-projects/a-christmas-carrot.png"
-import RatsImage from "../assets/tga-projects/rats.png"
+import SpiteSerpentideImage from "../../assets/tga-projects/spite serpentide.png"
+import ThorwaldsLamentImage from "../../assets/tga-projects/thorwalds-lament.png"
+import ZombieImage from "../../assets/tga-projects/zombie.png"
+import StakeOutImage from "../../assets/tga-projects/stake-out.png"
+import AChristMasCarrotImage from "../../assets/tga-projects/a-christmas-carrot.png"
+import RatsImage from "../../assets/tga-projects/rats.png"
 
 export const projects3x3 = [
     {
