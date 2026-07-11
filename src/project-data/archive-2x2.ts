@@ -8,7 +8,7 @@ export const projects2x2 = [
         href: "/archive/game-jams/game-jams",
         image: GameJamImage,
         video: "/game-jam-reel.webm",
-        objectFit: "contain"
+        objectFit: "cover"
     },
     {
         title: "TGA Projects",
@@ -16,6 +16,6 @@ export const projects2x2 = [
         href: "/archive/tga-projects/tga-projects",
         image: TgaProjectsImage,
         video: "/tga-projects-reel.webm",
-        objectFit: "contain"
+        objectFit: "cover"
     },
 ];
