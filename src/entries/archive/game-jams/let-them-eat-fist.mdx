@@ -2,9 +2,11 @@ import { Image } from "astro:assets";
 import '../../../styles/content.css'; 
 
 import MediaEntry from "../../../layouts/MediaEntry.astro";
+import ItchEmbed from "../../../components/ItchEmbed.astro";
 import EntryBorder from "../../../components/EntryBorder.astro";
-import MediaImage from "../../../assets/game-jams/let-them-eat-fist.png"
-import AwardImage from "../../../assets/game-jams/princess-jam-awards.png"
+
+import MediaImage from "../../../assets/game-jams/let-them-eat-fist.png";
+import AwardImage from "../../../assets/game-jams/princess-jam-awards.png";
 
 
 <MediaEntry mediaSide="right">
@@ -14,8 +16,8 @@ import AwardImage from "../../../assets/game-jams/princess-jam-awards.png"
     alt="Let Them Eat Fist"
     class="media-image"
 />
-<iframe
-    src="https://itch.io/embed/1537373?bg_color=363636&amp;fg_color=ffffff&amp;link_color=66c750&amp;border_color=000000" width="552" height="167"
+<ItchEmbed
+    link="https://itch.io/embed/1537373?bg_color=363636&amp;fg_color=ffffff&amp;link_color=66c750&amp;border_color=000000" width="552" height="167"
 />
 </div>
 

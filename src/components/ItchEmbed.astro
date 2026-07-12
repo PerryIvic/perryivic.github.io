@@ -1,0 +1,25 @@
+---
+interface Props {
+    link:string;
+}
+
+const { link } = Astro.props;
+---
+
+<style>
+.itch-iframe {
+    width: min(600px, 100%);
+
+    border: 1px solid #000;
+    border-radius: 6px;
+
+    display: block;
+    background: #363636;
+}
+</style>
+
+
+<iframe
+    src={link}
+    class="itch-iframe"
+/>
