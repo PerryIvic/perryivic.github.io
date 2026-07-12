@@ -1,0 +1,90 @@
+import '../../../styles/content.css'; 
+
+import MediaEntry from "../../../layouts/MediaEntry.astro";
+import YouTubeEmbed from "../../../components/YouTubeEmbed.astro";
+import EntryBorder from "../../../components/EntryBorder.astro";
+
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="XByLjassW_A"
+    title="TGA20 - Stockholm - Game Project #5 - Thorwald's Lament"
+/>
+
+<div slot="content">
+# Thorwald's Lament
+Genre: Adventure, Dark Fantasy <br/>
+Engine: TGA2D (TGA's 2D engine) <br/>
+Project Time: 14 Weeks, 50% <br/>
+Team Size: 14 <br/>
+
+## Contributions
+- Player Movement & Combat
+- Enemy Wave System
+- Fast Travel
+- NPCs
+- Gameplay Trailer Editing
+</div>
+</MediaEntry>
+<EntryBorder/>
+<MediaEntry mediaSide="left">
+<YouTubeEmbed
+    slot="media"
+    id="W9NdyDIg-G8"
+    title="Player Moveset | Thorwalds Lament"
+/>
+
+<div slot="content">
+## Player Movement & Combat
+Me and a fellow programmer worked closely on the development of the player. 
+Taking inspiration from our reference game "Hyper Light Drifter", for our melee combat 
+the player can dish out up to three hit combo before having a short cool down. A ranged projectile based attack and lastly a dash to avoid enemies and to cross hazardous areas.
+</div>
+</MediaEntry>
+<EntryBorder/>
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="_Mn2EfsTlz4"
+    title="Enemy Wave System | Thorwalds Lament"
+/>
+
+<div slot="content">
+## Enemy Wave System
+Before the player gets a new ability they have to first earn it by fighting their way through waves of enemies. 
+I made a system that gathered data from entities in a level editor called "LDTK", that would trigger an event and 
+then consecutively spawn waves of enemies. You could add any number of waves and enemies for each wave. 
+Every enemy you uses a spawn location and choose a type. Optionally you could add a timer to delay the spawn in case 
+you wanted a wave to spawn enemies continuously.
+</div>
+</MediaEntry><EntryBorder/>
+<MediaEntry mediaSide="left">
+<YouTubeEmbed
+    slot="media"
+    id="fstC8hazihg"
+    title="Fast Travel | Thorwalds Lament"
+/>
+
+<div slot="content">
+## Fast Travel
+With the map in the game being so large with collectibles scattered around, we needed a way to travel back and forth 
+to key areas around the world. And so i made a fast traveling system that allowed you to teleport to discovered 
+way points. It also kept track of your current location on the map. Using a level editor named "LDTK", 
+i made it so the level designers could place out each way point around the world. If i had to make any changes 
+then i would definitely change the way you navigate through the map. Using the keys to go left and right felt too 
+restrictive, so i would instead change it so that you use your mouse instead.
+</div>
+</MediaEntry><EntryBorder/>
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="xagOW_utRYg"
+    title="NPC´s | Thorwalds Lament"
+/>
+
+<div slot="content">
+## NPCs
+If you approach an NPC an exclamation mark will pop up above them, and when interacted a sprite will fade in. 
+A nice and simple way to teach the player the mechanics and give out tidbits of the story.
+</div>
+</MediaEntry>
