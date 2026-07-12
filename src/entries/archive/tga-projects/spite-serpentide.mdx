@@ -1,0 +1,168 @@
+import { Image } from "astro:assets";
+import '../../../styles/content.css'; 
+
+import MediaEntry from "../../../layouts/MediaEntry.astro";
+import YouTubeEmbed from "../../../components/YouTubeEmbed.astro";
+import EntryBorder from "../../../components/EntryBorder.astro";
+
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="ermnFfP2K5s"
+    title="TGA20 - Stockholm - Game Project #6 - Spite Serpentide Trailer"
+/>
+
+<div slot="content">
+# Spite: Serpentide
+Genre: Diablo-esque <br/>
+Engine: Katastroganoff (3D engine, Self made using DirectX11) <br/>
+Project Time: 14 Weeks, 50% <br/>
+Team Size: 11 <br/>
+## Contributions
+- Katastroganoff/ 3D Engine Framework
+- Particle Editor
+- VFX Editor
+- Multi-Phased Boss
+- Scripted Camera Events
+</div>
+</MediaEntry>
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+
+<div slot="content">
+## Katastroganoff/ 3D Engine Framework
+The Game Assembly held a 3D Graphics course were everyone developed their own 3D engines. 
+Our group voted that we used my engine since I made it easy to use with room for improvement. 
+This is the foundation of which our "Katastroganoff Engine" was expanded on.
+
+During our project i made it support the following:
+- Model Instancing
+- PBR (Physically Based Rendering)
+- Forward Rendering
+- Deferred Rendering
+- Directional light /Point light/ Spot light
+- Shadow Mapping with directional light
+- Bloom
+- VFX (Visual Effects)
+</div>
+</MediaEntry>
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<video
+    slot="media"
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    style="contain"
+    autoPlay
+>
+<source src="/spite-serpentide/particle-editor.webm" />
+</video>
+
+<div slot="content">
+## Particle Editor
+I made a Particle Emitter Preset that could play multiple particle emitters with alpha blending. 
+Each emitter being customizable;
+- Lifetime
+- Spawn Rate
+- Random Direction
+- Speed
+- Start velocity
+- Gravity
+- Color start/ end
+- Size start/ end
+- Burst Mode
+</div>
+</MediaEntry>
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    style="contain"
+    autoPlay
+>
+<source src="/spite-serpentide/vfx-editor.webm" />
+</video>
+
+<div slot="content">
+## VFX Editor
+The VFX class I created in our games are models with their textures moving around "Panning" effect. 
+You could editor which texture and model to be used, direction and speed the texture should move in, you could adjust the scale as well.
+A "VFX Preset" class could be played, looped and then deactivated. For each of these segments, you could add any number of VFX to be shown 
+simultaneously. All of these segments could be edited with different transition alpha, speed and timing.
+</div>
+</MediaEntry>
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<video
+    slot="media"
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    style="contain"
+    autoPlay
+>
+<source src="/spite-serpentide/boss-phase-1.webm" />
+</video>
+
+<div slot="content">
+## Multi-Phased Boss
+I was part of the design team for the boss and was the sole developer of its functionality. The idea was to create a telegraphed boss that used projectiles 
+and acid pools to give enemy waves an edge to keep the player on their toes. The enemy spawning was scrapped due to time restrictions. 
+The boss was implemented using a "Finite State Machine". It had three damage abilities and one move for repositioning. <br/>
+
+Each new offensive ability was introduced after a third of the boss's health was depleted. Rigged so the new ability would always be used first 
+after a transition animation. That way it was clearly indicated what new ability would be available to the boss's ability roster. <br/>
+
+I spent some time refactoring the boss system iteratively to make it easier to work with. A rule of thumb that I held was that a function 
+shouldn't have more than 30-60 lines of code. And that the boss's abilities needed to have entire systems to themselves to prevent clutter 
+and to promote easier overview over sub-systems. <br/>
+</div>
+</MediaEntry>
+<MediaEntry mediaSide="left">
+<video
+    slot="media"
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    style="contain"
+    autoPlay
+>
+<source src="/spite-serpentide/boss-phase-2.webm" />
+</video>
+
+<div slot="content">
+</div>
+</MediaEntry>
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    style="contain"
+    autoPlay
+>
+<source src="/spite-serpentide/camera-events.webm" />
+</video>
+
+<div slot="content">
+## Scripted Camera Events
+On an occurring event, it lerps the camera to a key position, triggers an event and then optionally, 
+the camera is able to move through a set of arbitrary positions before returning to the player.
+</div>
+</MediaEntry>
