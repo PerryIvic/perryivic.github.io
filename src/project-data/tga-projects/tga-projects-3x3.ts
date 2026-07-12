@@ -10,42 +10,42 @@ export const projects3x3 = [
         image: SpiteSerpentideImage,
         title: "Spite: Serpentide",
         subtitle: "C++ • OpenGL",
-        href: "/projects/soft-body-physics",
+        href: "/archive/tga-projects/spite-serpentide",
         objectFit: "cover"
     },
     {
         image: ThorwaldsLamentImage,
         title: "Thorwald's Lament",
         subtitle: "C++ • OpenGL",
-        href: "/projects/soft-body-physics",
+        href: "/archive/tga-projects/thorwalds-lament",
         objectFit: "cover"
     },
     {
         image: ZombieImage,
         title: "Zombie?",
         subtitle: "C++ • OpenGL",
-        href: "/projects/soft-body-physics",
+        href: "/archive/tga-projects/zombie",
         objectFit: "cover"
     },
     {
         image: StakeOutImage,
         title: "Stake Out",
         subtitle: "C++ • OpenGL",
-        href: "/projects/soft-body-physics",
+        href: "/archive/tga-projects/stake-out",
         objectFit: "cover"
     },
     {
         image: AChristMasCarrotImage,
         title: "A Christmas Carrot",
         subtitle: "C++ • OpenGL",
-        href: "/projects/soft-body-physics",
+        href: "/archive/tga-projects/a-christmas-carrot",
         objectFit: "cover"
     },
     {
         image: RatsImage,
         title: "R.A.T.S.",
         subtitle: "C++ • OpenGL",
-        href: "/projects/soft-body-physics",
+        href: "/archive/tga-projects/rats",
         objectFit: "cover"
     },
 ];

@@ -5,7 +5,7 @@ export const specializations = [
         image: ShotgunParkourImage,
         title: "SHOTGUN PARKOUR",
         subtitle: "C++ • OpenGL",
-        href: "/projects/soft-body-physics",
+        href: "/archive/tga-projects/shotgun-parkour",
         objectFit: "contain"
     },
 ];
