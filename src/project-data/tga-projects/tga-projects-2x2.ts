@@ -6,14 +6,14 @@ export const projects2x2 = [
         image: WithoutATraceImage,
         title: "Without a Trace",
         subtitle: "C++ • OpenGL",
-        href: "/projects/without-a-trace",
+        href: "/archive/tga-projects/without-a-trace",
         objectFit: "contain"
     },
     {
         image: ProcyonImage,
         title: "PROCYON",
         subtitle: "C++ • OpenGL",
-        href: "/projects/spite-serpentide",
+        href: "/archive/tga-projects/procyon",
         objectFit: "contain"
     },
 ];

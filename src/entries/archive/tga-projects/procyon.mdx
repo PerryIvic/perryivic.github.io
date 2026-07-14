@@ -1,0 +1,219 @@
+import '../../../styles/content.css'; 
+
+import MediaEntry from "../../../layouts/MediaEntry.astro";
+import YouTubeEmbed from "../../../components/YouTubeEmbed.astro";
+import EntryBorder from "../../../components/EntryBorder.astro";
+
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="a-jajuUe71s"
+    title="TGA20 - Stockholm - Game Project #7 - PROCYON Trailer"
+/>
+
+<div slot="content">
+# PROCYON
+Genre: First Person Shooter <br/>
+Engine: Katastroganoff (Custom C++ Game engine, DirectX11) <br/>
+Project Time: 15 Weeks, 50% <br/>
+Team Size: 9 <br/>
+## Contributions
+- FPS Camera
+- Weapons
+- Weapon Sway
+- Decal Manager
+- Bullet Casing Emitter
+- Visual Script Editor
+- Objectives
+- Ranged enemies
+- HUD
+- Gameplay Trailer Editing
+</div>
+
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<div slot="content">
+## FPS Camera
+In our game the mouse uses an FPS mode that when activated keeps track of the amount of change in position 
+to create an angular delta to move the camera in. At the end of the frame the mouse is being re-centered to 
+the screen to prevent the mouse from going off screen. <br/>
+
+To prevent Gimbal lock, which would cause irrational spinning when performing a rotation in the y-axis while 
+both the x and z axis are aligned. I restricted the amount of pitch to never exceed -/+89 degrees. <br/>
+
+While this worked it did cause odd rotations around the z-axis which needed to be removed. To do this I used 
+the cross product to create a right vector, using the cameras current forward vector and a new vector that 
+pointed up in world space. These three vectors can now be inserted into the cameras transform to remove unwanted 
+z-rotations, and now we have a classic FPS camera. <br/>
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="3FUqnKmsS2s"
+    title="Weapons | PROCYON"
+/>
+
+<div slot="content">
+## Weapons
+Along with the creation of weapons i made an editor to customize its attributes;
+
+- Damage
+
+- Ammo Capacity
+
+- X/Y spread
+
+- Fire rate
+
+- Reload Speed
+
+- Auto/ Semi auto
+
+For collision checks I used PhysX Scene Query Raycast function. Since we used an ECS for our gameplay logic 
+all we needed was to find the ID of the entity hit and then apply damage to the selected enemy component.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<YouTubeEmbed
+    slot="media"
+    id="GqK1pMCZZSs"
+    title="Weapon Sway | PROCYON"
+/>
+
+<div slot="content">
+## Weapon Sway
+To make the weapon feel natural to move around I implemented weapon swaying. I utilize the mouse delta to 
+create a vector to push the weapon in the desired direction. And I use the players current velocity to push 
+the weapons position on the x and z axis. The weapon will reset it's orientation if the mouse delta is to weak 
+and when the player isn't moving, the weapon re-assumes its original position. I also made a the weapon bounce 
+when landing on the ground after jumping.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="RkinN2mh21w"
+    title="Decal Manager | PROCYON"
+/>
+
+<div slot="content">
+## Decal Manager
+I pooled an amount of decals that we used to make bullet holes from where the raycasts hit. 
+To make the decal properly angle itself outwards from the surface we use the surface normal 
+provided from the PhysX raycast.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<YouTubeEmbed
+    slot="media"
+    id="3DLBFWw_Wqg"
+    title="Bullet Casing Emitter | PROCYON"
+/>
+
+<div slot="content">
+## Bullet Casing Emitter
+When the weapon is firing a bullet casing it thrown out of the gun. To do this a pool an amount of bullet 
+models for each gun and then apply a force on it's velocity to make it look like it's being pushed out of the gun. <br/>
+
+I didn't want the bullets to be positioned in relation to world space because of the risk that the bullets might 
+clip through the weapon while the player is moving. So the bullets are moving in relation to the weapon models 
+transform instead. <br/>
+
+A final touch was to randomize the start velocity and direction each bullet moved in to make it look more naturally 
+random. <br/>
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    style="contain"
+    autoPlay
+>
+<source src="/procyon/script-editor.webm" />
+</video>
+
+<div slot="content">
+## Visual Script Editor
+A simple visual script editor I made that our level designers used to spawn enemies in the final level. 
+I used an extension to ImGui called ImNodes for the visuals and node related tools that it provided.
+
+The tricky part to creating the graph tree was to define and keep track of all existing nodes, 
+but to only iterate through connected nodes starting from the root node. I spent plenty of time refactoring 
+the structure and readability of the code, while locating "edge case" bugs when deleting and creating new nodes. <br/>
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<YouTubeEmbed
+    slot="media"
+    id="l57vQ9ELDVc"
+    title="Objectives | PROCYON"
+/>
+
+<div slot="content">
+## Objectives
+Our gameplay loop was heavily inspired by "High Hell" in that you needed to 
+jump out of the building after completing all objectives. Me and the designers 
+wanted the levels to be short and sweet and would only need easily accessible 
+objectives to complete. And for that we have interactable and destructable 
+objectives. 
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="WHXcIP22M_E"
+    title="Ranged Enemies | PROCYON"
+/>
+
+<div slot="content">
+## Ranged Enemies
+For the ranged enemies I re-used the path finding logic from our previous game 
+with the addition of shooting behavior. When seeing the player, the ranged enemy 
+will start shooting and gradually rotate towards the player until it looses 
+line of sight. For this I used physX raycasting for line of sight checks and if 
+the ray hit a wall I re-scaled the VFX so that it wouldn't go through walls.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+
+<div slot="content">
+## HUD
+I made a simple health bar and ammo counter using our own text-renderer. 
+The player system is subscribed to a Postmaster and updates the health bar 
+when receiving a message that the player took damage or picked up a health kit. <br/>
+
+The ammo text simply changes its text whenever the gun is fired or reloaded.
+</div>
+</MediaEntry>
