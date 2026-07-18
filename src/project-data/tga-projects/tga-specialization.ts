@@ -1,4 +1,4 @@
-import ShotgunParkourImage from "../../assets/tga-projects/shotgun-parkour.png";
+import ShotgunParkourImage from "../../assets/tga-projects/shotgun-parkour-mini.png";
 
 export const specializations = [
     {
