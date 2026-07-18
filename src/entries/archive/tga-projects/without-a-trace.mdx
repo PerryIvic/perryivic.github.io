@@ -1,0 +1,252 @@
+import { Image } from "astro:assets";
+import '../../../styles/content.css'; 
+
+import MediaEntry from "../../../layouts/MediaEntry.astro";
+import YouTubeEmbed from "../../../components/YouTubeEmbed.astro";
+import EntryBorder from "../../../components/EntryBorder.astro";
+
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="t_inj0VTNCM"
+    title="TGA20 - Stockholm - Game Project #8 - Without A Trace Trailer"
+/>
+
+<div slot="content">
+# Without A Trace
+Genre: FPS, Psychological horror <br/>
+Engine: Unreal Engine 4 <br/>
+Project Time: 9 Weeks, 50% <br/>
+Team Size: 10 <br/>
+## Contributions
+- Player Movement
+- Player Animations
+- Shotgun
+- Tommy Gun
+- Camera Bobbing
+- Weapon Sway
+- Bullet and Blood Decals
+- Aiming Interruption
+- Ingame Pause Menu
+- Gameplay Trailer Editing
+</div>
+
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<YouTubeEmbed
+    slot="media"
+    id="o-je2n5-vzY"
+    title="Player Movement | Without A Trace"
+/>
+
+<div slot="content">
+## Player Movement
+Taking inspiration from "Resident Evil 7", I designed the player movement to have 
+weight and a bundle of subtle features that make up the experience. Like different 
+movement speeds depending on which direction you move in or whether you're aiming 
+your weapon. It also has an automatic un-crouch feature using sphere-casts to 
+check if there's an obstacle above the player. <br/>
+
+All developed features was made using both Unreal Engines blueprints and Angelscript.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<div slot="content">
+## Animation Implementation
+Using animation blueprints that received events and data to play animations. 
+I utilized the Event Graph to play animation montages using events when 
+firing a weapon and reloading. I used the Animation State Machine to assume 
+different animation poses. <br/>
+
+As an optimization I should have created a parent "anim" blueprint class 
+that's shared between both the arms and weapon. That way I wouldn't need 
+to create two different blueprints that are basically the same. <br/>
+
+The fantastic graphic designers that created and animated the 
+weapons were:
+
+- [Nikola Praizovic Hedström](https://nikola_praizovic.artstation.com/) (Arms & Shotgun)
+
+- [Sixten Augustsson](https://sixten_a.artstation.com/) (Tommy Gun)
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<YouTubeEmbed
+    slot="media"
+    id="3mFQtow6aiU"
+    title="Shotgun | Without A Trace"
+/>
+
+<div slot="content">
+## Shotgun
+Working with animations for a shotgun was more finicky than I thought. 
+Especially in our case as the player needs to manually pump before each shot. 
+You might have noticed that the hammer of the shotgun will look different depending 
+on if the gun is pumped or not. Well what if the player wants to reload or sprint 
+when the shotgun is in an "un-pumped" state? Then that case needs to get handled 
+as well so that the hammer doesn't transition back and forth unnaturally. <br/>
+
+It was also fun to work on the tricky reload animation as the "shell loading" 
+animation needed to loop for a number of times while also being seamless 
+when transitioning from the start and end animation. <br/>
+
+I implemented vfx created by graphics designer [Gevik Shanazari](https://gevik.artstation.com/) 
+who used FluidNinja and Niagara. To add to the effect, I also added a muzzle flash. 
+A point light that turns on and off for a split second when firing a weapon.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="uv6UphVUCa8"
+    title="Tommy Gun | Without A Trace"
+/>
+
+<div slot="content">
+## Tommy Gun
+My personal favorite for its simple implementation compared to the shotgun, 
+and how fun the shooting is. I basically just needed to reuse the design of the shotguns 
+animation blueprint and adapt it. <br/>
+</div>
+</MediaEntry>
+
+<MediaEntry mediaSide="left">
+<YouTubeEmbed
+    slot="media"
+    id="Hl0yxI1MgFs"
+    title="Tommy Gun Random Recoil Sway | Without A Trace"
+/>
+
+<div slot="content">
+## Random Recoil Sway
+Due to the weapons high rate of fire, it uses "Random recoil Sway" that adds random sways to 
+the weapons orientation. Thanks to my weapon swaying system the weapon re-centers 
+itself automatically. This enhances the shooting animation and makes it look like 
+genuine recoil handling.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="8eEWkyWCBgw"
+    title="Camera Bobbing Enabled | Without A Trace"
+/>
+
+<div slot="content">
+## Camera Bobbing
+I used Unreals camera shake tool (UCameraShakeBase) to customize different 
+camera bobbing behavior during movement and weapon actions. This makes it look 
+like it's part of an animation but it's just the camera moving around while leaving 
+it's child components unaffected.
+</div>
+</MediaEntry>
+
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="qadZpoqxtjM"
+    title="Camera Bobbing Disabled | Without A Trace"
+/>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<YouTubeEmbed
+    slot="media"
+    id="By3-s0kV36g"
+    title="Tommy Gun Sway | Without A Trace"
+/>
+
+<div slot="content">
+## Weapon Sway
+To make the weapon feel natural to move around i reused my system from "Procyon" 
+and implemented weapon swaying. The weapon is able to angle and move itself using 
+the players current velocity and mouse delta. When the player isn't moving, the 
+weapon re-assumes it's original position and orientation. 
+</div>
+</MediaEntry>
+
+<MediaEntry mediaSide="left">
+<YouTubeEmbed
+    slot="media"
+    id="ohGCp0DqJ2k"
+    title="Shotgun Sway | Without A Trace"
+/>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="5Ot4Un-HKNk"
+    title="Bullet & Blood Decals | Without A Trace"
+/>
+
+<div slot="content">
+## Bullet and Blood Decals
+Bullet decals gets placed wherever your bullet lands on the environment. <br/>
+
+Blood decals are placed when shooting an enemy and spawns a blood decal behind the enemy. 
+As if the shot pierced through the enemy and replaces the regular bullet 
+decal with a random blood decal.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<YouTubeEmbed
+    slot="media"
+    id="Aqa5kS_nFKw"
+    title="Interrupt Aiming | Without A Trace"
+/>
+
+<div slot="content">
+## Interrupt Aiming
+When closing in on the environment the equipped weapon moves back to a relaxed pose. 
+I sphere-cast around the player weapon to check for possible environment collisions and 
+send the result to an animation state machine to play the proper animation. <br/>
+
+This feature serves to purposes. The first one improving the interactive experience 
+especially when going opening doors. The second being a small remedy to prevent the 
+arms and weapons from clipping through the environment.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<YouTubeEmbed
+    slot="media"
+    id="0Di5JgYTfRM"
+    title="Ingame Pause Menu | Without A Trace"
+/>
+
+<div slot="content">
+## Ingame Pause Menu
+Using a widget component, created by [Kei Mak](https://keimak.artstation.com/) a graphic designer specializing in UI, 
+to be used with the notepad. What I did was connecting the notepad to a bone/socket 
+on the animation rig for the players arms. I also needed to implement extra animation 
+events to lower down either weapon before bringing up the notepad animation. <br/>
+
+This also involved saving away the settings variables in a "GameInstance" class so that 
+they wouldn't get lost during scene changes.
+</div>
+</MediaEntry>
