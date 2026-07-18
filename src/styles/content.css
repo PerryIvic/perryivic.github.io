@@ -34,6 +34,11 @@
     margin-bottom: 1.0rem;
 }
 
+.content a {
+    color: #66A819;
+    text-decoration: underline;
+}
+
 .media-image {
     display: block;
 
