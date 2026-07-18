@@ -1,0 +1,175 @@
+import { Image } from "astro:assets";
+import '../../../styles/content.css'; 
+
+import MediaEntry from "../../../layouts/MediaEntry.astro";
+import ItchEmbed from "../../../components/ItchEmbed.astro";
+import EntryBorder from "../../../components/EntryBorder.astro";
+
+import MediaImage from "../../../assets/tga-projects/shotgun-parkour-mini.png"
+
+<MediaEntry mediaSide="right">
+<div slot="media">
+<Image
+    src={MediaImage}
+    alt="SHOTGUN PARKOUR"
+    class="media-image"
+/>
+<ItchEmbed
+    link="https://itch.io/embed/1469248?bg_color=363636&amp;fg_color=ffffff&amp;link_color=66c750&amp;border_color=000000" width="552" height="167"
+/>
+</div>
+
+<div slot="content">
+# SHOTGUN PARKOUR
+Genre: Action, Platformer <br/>
+Engine: Unity 2D <br/>
+Project Time: 5 Weeks, 50% <br/>
+Team Size: 1 <br/>
+
+## Goal
+This project was part of our specialization course at The Game Assembly. 
+I wanted to learn more about the challenges of gameplay development with the focus of aerial movement. 
+So I created a character that could dash and weave through the air using the recoil from their weapons. <br/>
+
+My goals were to:
+- Develop fun gameplay loop
+- Design progressive levels to gradually teach player the game mechanics
+- Iterate player and level design based on feedback from others
+
+Feel free to try the end result of the game. Scroll further down to read more 
+about the games development in detail. Have fun!
+</div>
+
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    style="contain"
+    autoPlay
+>
+<source src="/shotgun-parkour/the-arsenal.webm" />
+</video>
+
+<div slot="content">
+## The Arsenal
+The player uses a "Shotgun" that creates an immense force that pushes you through 
+the air. <br/>
+
+To reload our shotgun we destroy red obstacles. An easy way to go about it is to use 
+our trusty "Machine Gun" to briefly suspend us in the air, granting a window to focus 
+down a target to reload and keep the momentum going.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<video
+    slot="media"
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    style="contain"
+    autoPlay
+>
+<source src="/shotgun-parkour/camera-behavior.webm" />
+</video>
+
+<div slot="content">
+## Camera Behavior
+Camera keeps up with the player and lerps towards their position for a smooth 
+transition and does the same with the mouse once you move it far away enough 
+from the player. <br/>
+
+While the player is in the air it priorities the camera keeping the player 
+to its center while also finding a balance to look ahead using your mouse. 
+Without sacrificing to much distance to plan out your path.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    style="contain"
+    autoPlay
+>
+<source src="/shotgun-parkour/enemies.webm" />
+</video>
+
+<div slot="content">
+## Enemies emerge
+Throughout the games development I continuously added and refined features 
+iteratively through feedback from play testers. What came up was the 
+lack of enemies to keep the player engaged to motivate fast paced action. <br/>
+
+I made destructible blocks and basic turrets to begin with. Later "homing missiles" 
+were developed to initiate a "cat and mouse" situation were the player 
+needed to anticipate and outmaneuver the missiles. Since the player could 
+now be defeated a checkpoint system was also in order.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<video
+    slot="media"
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    style="contain"
+    autoPlay
+>
+<source src="/shotgun-parkour/game-juice.webm" />
+</video>
+
+<div slot="content">
+## Game Juice
+Once the gameplay loop was complete, everything needed sounds and effects 
+and other features to enhance the experience. Like Parallax, 
+Camera Shake and how the player spins in the air when accelerating. <br/>
+
+Also i found the spare time to add a rocket jet pack.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    style="contain"
+    autoPlay
+>
+<source src="/shotgun-parkour/missile-escape.webm" />
+</video>
+
+<div slot="content">
+## Putting it all together
+Everything was done, but I wanted to push a little further. So I designed 
+tutorials and levels that teaches the player to use the weapons before 
+I added more difficulty to the levels. <br/>
+
+In the end I ended up creating a cool game prototype and in the process 
+gained a firmer grasp of the challenges within gameplay development.
+</div>
+</MediaEntry>
