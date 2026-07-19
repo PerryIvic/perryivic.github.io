@@ -1,8 +1,13 @@
 ---
+import '../styles/global.css';
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectGrid from "../components/ProjectGrid.astro";
+import { projects2x2 } from "../project-data/projects-2x2.ts";
 
 const pageTitle = "Projects";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
+    <h1 class="header-project">{pageTitle}</h1>
+    <ProjectGrid projects={projects2x2} columns={2}/>
 </BaseLayout>

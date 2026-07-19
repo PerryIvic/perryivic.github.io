@@ -1,0 +1,385 @@
+import { Image } from "astro:assets";
+import '../../styles/content.css'; 
+
+import MediaEntry from "../../layouts/MediaEntry.astro";
+import EntryBorder from "../../components/EntryBorder.astro";
+import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
+
+import Slide1x1 from "../../assets/projects/mesh-slicer/slide-1-1-collider.png"
+import Slide2x1 from "../../assets/projects/mesh-slicer/slide-2-1.png"
+import Slide2x2 from "../../assets/projects/mesh-slicer/slide-2-2.png"
+import Slide2x3 from "../../assets/projects/mesh-slicer/slide-2-3.png"
+import Slide3x1 from "../../assets/projects/mesh-slicer/slide-3-1.png"
+import Slide4x1 from "../../assets/projects/mesh-slicer/slide-4-1.png"
+import Slide5x1 from "../../assets/projects/mesh-slicer/slide-5-1.png"
+import Slide6x1 from "../../assets/projects/mesh-slicer/slide-6-1.png"
+import Slide7x1 from "../../assets/projects/mesh-slicer/slide-7-1.png"
+import Slide8x1 from "../../assets/projects/mesh-slicer/slide-8-1.png"
+import Slide9x1 from "../../assets/projects/mesh-slicer/slide-9-1.png"
+import Slide10x1 from "../../assets/projects/mesh-slicer/slide-10-1.png"
+
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    class="media-image"
+    src="/mesh-slicer/demonstration.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+/>
+
+<div slot="content">
+# Mesh Slicer
+Engine: Unity <br/>
+[Github](https://github.com/PerryIvic/Mesh-Slicer)
+## Summary
+I have recreated the "blade mode" from "Metal Gear Rising Revengeance". 
+The mechanic allows the player to split any mesh into two meshes using 
+a rotatable plane. 
+
+The goal with this feature was to refresh my 3D 
+math skills and to try manipulating a 3D mesh’s appearance. 
+I further pushed the project's potential by adding a character 
+with animations and experimenting with Unity’s shader graph.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<YouTubeEmbed
+    slot="media"
+    id="zCK_WNDA4ZY"
+    title="Preview | Mesh Slicer"
+/>
+
+<div slot="content">
+## Rotatable Plane
+Let’s start off with the rotatable plane. I created a material that 
+highlights the surface it intersects, which I use to target 
+the area that should be sliced. Holding the right mouse button 
+will make the camera assume a position closer to the plane and 
+you rotate the plane by moving the mouse horizontally. I use 
+the mouse x delta to rotate the plane's roll axis.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<div slot="media">
+<Image
+    src={Slide1x1}
+    alt="Slide1x1"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+## Box Cast
+Pressing the left mouse button will perform the cut. To capture all 
+the gameobjects that intersect the plane I cast a collision box 
+in the shape of the plane with its current orientation.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<div slot="media">
+<Image
+    src={Slide2x1}
+    alt="Slide2x1"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+## Preparation
+Before slicing the mesh, I declare variables that will be used throughout the 
+process. <br/>
+
+<u>Plane cutPlane</u> is a struct that can tell me which side of the plane a 
+triangle's vertice lies on. For the plane to function correctly, I 
+translate the plane from world space to the target gameobjects local/ model space.
+</div>
+</MediaEntry>
+
+<MediaEntry mediaSide="right">
+<div slot="media">
+<Image
+    src={Slide2x2}
+    alt="Slide2x2"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+<u>Mesh originalMesh</u>, the mesh of the target object that will be cut in half. <br/>
+
+<u>MeshData positiveMesh/negativeMesh</u> is used to store triangle data to construct a 
+mesh. All triangles above the plane go to the positiveMesh while the triangles 
+below the plane go to the negativeMesh.
+</div>
+</MediaEntry>
+
+<MediaEntry mediaSide="left">
+<div slot="media">
+<Image
+    src={Slide2x3}
+    alt="Slide2x3"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+<u>List&lt;Vector3&gt; intersectingPoints</u>, I keep track of all the points of intersection 
+where the mesh’s triangles intersect the plane. This data will then be used to 
+create a new surface for the sliced area for the two mesh halves.
+
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<div slot="media">
+<Image
+    src={Slide3x1}
+    alt="Slide3x1"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+## Splitting The Mesh
+Each mesh has sub-meshes, which means that a mesh can be made up of several meshes. 
+This is important for me to keep track of as each mesh can use a different 
+texture/ material which I will take advantage of later.
+
+For now, I need to loop through all the triangles within the original mesh’s 
+sub-meshes and sort them into the positive and negative mesh half.
+
+Using Unity’s Plane struct I check which vertices in the triangle lie above 
+or below the plane. I handle three cases:
+
+- Case 1: The triangle is above the plane. Place in positiveMesh.
+- Case 2: The triangle is below the plane. Place in negativeMesh.
+- Case 3: The triangle is intersecting the plane. Split the triangle 
+into three new ones and place them in the appropriate mesh half.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<div slot="media">
+<Image
+    src={Slide4x1}
+    alt="Slide4x1"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+## Splitting a Triangle
+Our goal here is to split the triangle into three new triangles and place 
+them in the appropriate meshData half.
+
+I start by sorting the vertices belonging to the intersecting triangle 
+into the variables <u>positiveTriangle</u> and <u>negativeTriangle</u>. 
+These are incomplete triangles that only hold half of a triangle’s vertices. 
+This means that one triangle half will only hold one vertice while the 
+other holds two.
+
+I sort those triangles into two new variables, <u>largeTriangle</u> which always 
+contains the larger triangle half, and the other to <u>smallerTriangle</u> which 
+contains one vertice. This is important as I’ll access specific elements in 
+each of the triangle halves vertice array and sorting them will prevent me 
+from accessing an element out of bounds.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<div slot="media">
+<Image
+    src={Slide5x1}
+    alt="Slide5x1"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+## Finding the Intersection Points
+Next, we’ll find the two intersecting points of the triangle and create 
+their respective normals and uv coordinates.
+
+I raycast between two vertices belonging to opposite sides of the plane 
+to receive the distance where the intersection happened from the ray’s origin. 
+This is useful as now I can create a percentage of the distance traveled 
+between the two vertices for a lerp function. Using this percentage as a 
+lerp value I can create the vertice, normal and uv coordinates for each 
+point intersection.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<div slot="media">
+<Image
+    src={Slide6x1}
+    alt="Slide6x1"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+## Assembling new Triangles
+Now with all the necessary data for the intersection points. We can start 
+“slicing” the triangle by replacing the intersected triangle 
+with the sliced triangles.
+
+I assemble three triangles by combining the vertices in specific 
+orders as the image demonstrates.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<div slot="media">
+<Image
+    src={Slide7x1}
+    alt="Slide7x1"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+## Flipping the Triangle
+Before adding a new triangle to the appropriate mesh, I make sure the 
+triangle is facing the same way as the triangle’s surface normal.
+ 
+I do this by creating a cross-product from two vectors using the 
+triangle's vertices. Then I perform a dot product using the 
+plane's normal with the cross product to see if the cross product 
+is angled in the same general direction as the plane normal. 
+If the dot product is less than 0, then it means the triangle 
+is facing the opposite direction of the plane normal.
+
+In order to flip the direction I need to flip the [winding order](https://docs.unity3d.com/Manual/Example-CreatingaBillboardPlane.html#:~:text=The%20ordering%20is%20important%20because%20you%20must%20order%20the%20corners%20clockwise.) 
+of the triangle so that it will be visible in the appropriate angle.
+
+I repeat this process for all three triangles and place them in the 
+appropriate mesh half.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<div slot="media">
+<Image
+    src={Slide8x1}
+    alt="Slide8x1"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+## Hollow Mesh
+Now the mesh has been successfully split in half! But the mesh is invisible 
+when looking at it from the inside. To complete the mesh, an extra surface 
+for the sliced area needs to be made.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<div slot="media">
+<Image
+    src={Slide9x1}
+    alt="Slide9x1"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+## Patching up the Sliced Area
+Using all the intersection points from all the intersecting triangles 
+I calculate the center of the surface.
+
+Since the shape of the surface will be the same, I create triangles 
+for both the positive and negative mesh. Each triangle uses the center 
+and a pair of intersecting points for the vertices. Then I use the 
+plane normal for the positive and flip the normal for the negative mesh. 
+The uv coordinates are arbitrary as I am only using a material with a singular color.
+
+After I place the triangle in the <u>positiveMesh</u> I flip the winding order 
+of the triangle and then place it in the <u>negativeMesh</u>.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<div slot="media">
+<Image
+    src={Slide10x1}
+    alt="Slide10x1"
+    class="media-image"
+/>
+</div>
+
+<div slot="content">
+## Finalize
+The two half meshes are now complete with their sliced areas patched up.
+
+All that’s left is creating two new gameobjects with a mesh half. 
+Then I add the materials for the new mesh from the original gameobject, 
+but also applied a different material for the sliced surface.
+
+I figured out that the array of sub-meshes and array of materials is 
+connected parallel to each other. Since I want to add a different 
+material to the sub-mesh with the sliced area I just need to add a 
+new element to the materials array with the new material.
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    class="media-image"
+    src="/mesh-slicer/thanks-for-watching.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+/>
+
+<div slot="content">
+## Thanks for reading!
+Overall, I am satisfied with the project, however adding vfx would really 
+amp up the experience.
+
+If there is one thing I would like to improve would be the performance 
+since it starts to lag when slicing multiple meshes at once. This is 
+most likely due to the number of iterations and raycasts that are 
+being performed to find the plane's intersection points.
+
+Perhaps an object pool of GameObjects can be applied to prevent their current 
+dynamic instantiation. Or maybe the addition of a thread pool could be 
+used to slice each mesh on a separate thread to speed up the process.
+
+Feel free to try out the project from my [github](https://github.com/PerryIvic/Mesh-Slicer) 
+page and study the codebase.
+</div>
+</MediaEntry>
