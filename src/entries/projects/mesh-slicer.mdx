@@ -251,7 +251,7 @@ orders as the image demonstrates.
 
 <EntryBorder/>
 
-<MediaEntry mediaSide="right">
+<MediaEntry mediaSide="left">
 <div slot="media">
 <Image
     src={Slide7x1}
@@ -282,7 +282,7 @@ appropriate mesh half.
 
 <EntryBorder/>
 
-<MediaEntry mediaSide="left">
+<MediaEntry mediaSide="right">
 <div slot="media">
 <Image
     src={Slide8x1}
@@ -301,7 +301,7 @@ for the sliced area needs to be made.
 
 <EntryBorder/>
 
-<MediaEntry mediaSide="right">
+<MediaEntry mediaSide="left">
 <div slot="media">
 <Image
     src={Slide9x1}
@@ -328,7 +328,7 @@ of the triangle and then place it in the <u>negativeMesh</u>.
 
 <EntryBorder/>
 
-<MediaEntry mediaSide="left">
+<MediaEntry mediaSide="right">
 <div slot="media">
 <Image
     src={Slide10x1}
@@ -354,7 +354,7 @@ new element to the materials array with the new material.
 
 <EntryBorder/>
 
-<MediaEntry mediaSide="right">
+<MediaEntry mediaSide="left">
 <video
     slot="media"
     class="media-image"
@@ -367,13 +367,11 @@ new element to the materials array with the new material.
 
 <div slot="content">
 ## Thanks for reading!
-Overall, I am satisfied with the project, however adding vfx would really 
-amp up the experience.
+Overall, I am satisfied with how cool this project turned out!
 
-If there is one thing I would like to improve would be the performance 
-since it starts to lag when slicing multiple meshes at once. This is 
-most likely due to the number of iterations and raycasts that are 
-being performed to find the plane's intersection points.
+Performance could definitely be improved as it starts lagging when 
+slicing multiple meshes at once. This is most likely due to the number of 
+iterations and raycasts that are being performed to find the plane's intersection points.
 
 Perhaps an object pool of GameObjects can be applied to prevent their current 
 dynamic instantiation. Or maybe the addition of a thread pool could be 
