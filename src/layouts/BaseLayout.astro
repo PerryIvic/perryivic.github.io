@@ -4,6 +4,7 @@ import EntryBorder from "../components/EntryBorder.astro";
 import '../styles/global.css';
 
 const {pageTitle} = Astro.props
+const pageSuffix = "Perry Ivic's Software Developer Portfolio"
 
 ---
 <html lang="en">
@@ -12,7 +13,7 @@ const {pageTitle} = Astro.props
     <link rel="icon" type="image/png" href="/icon.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <title>{pageTitle + " | " + pageSuffix}</title>
   </head>
   
   <body>
