@@ -27,6 +27,10 @@
     margin-bottom: 1.0rem;
 }
 
+.content p strong {
+    color: #66A819;
+}
+
 .content li {
     font-family: Consolas, "Courier New", monospace;
     font-size: 20px;

@@ -1,0 +1,353 @@
+import '../../styles/content.css'; 
+
+import MediaEntry from "../../layouts/MediaEntry.astro";
+import EntryBorder from "../../components/EntryBorder.astro";
+import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
+
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    class="media-image"
+    src="/mesh-slicer/demonstration.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+/>
+
+<div slot="content">
+# Jelly Physics
+Engine: Godot <br/>
+[Github](https://github.com/PerryIvic/Mesh-Slicer)
+
+Contents: <br/>
+-- Verlet Integration <br/>
+-- Distance Constraint <br/>
+-- Area/Volume Constraint <br/>
+-- Extended Position Based Dynamics (XPBD) <br/>
+-- Threaded Collision Solver <br/>
+
+## Summary
+Jelly Physics or Soft Body Physics is a way to visually represent shapes 
+that are elastic, deformable and compressed. In physics terms, 
+these deformable shapes are referred to as [Soft Bodies](https://en.wikipedia.org/wiki/Soft-body_dynamics).
+Which can represent vehicle damage, clothing or in my case jelly characters!
+
+The reason why I made this feature is because I’m planning to use it for 
+a game with said jelly characters. And because I’ve always had a soft spot (pun very much intended) 
+for jelly shapes due to their mesmerizing and wiggly nature.
+
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<video
+    slot="media"
+    class="media-image"
+    src="/mesh-slicer/demonstration.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+/>
+
+<div slot="content">
+## Defining a shape
+A shape or a polygon is made out of points that are connected to each other.
+
+Each point is defined by a position.
+
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    class="media-image"
+    src="/mesh-slicer/demonstration.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+/>
+
+<div slot="content">
+## Verlet Integration
+The points in the shape need to move, which means they need velocity and 
+gravity to be applied to them every frame.
+
+Instead of accumulating forces into a persistent velocity variable ([Euler integration](https://en.wikipedia.org/wiki/Euler_method)) 
+I instead went with [Verlet Integration](https://en.wikipedia.org/wiki/Verlet_integration). 
+This means that velocity is implicit and is 
+calculated by creating a vector based on the point’s previous and current position.
+
+The advantages of using implicit velocity is that it’s simple to implement and prevents 
+forces from accumulating and causing explosive behavior. However, this stability 
+comes with the cost of losing explicit control over the velocity, making it trickier 
+to apply forces on a shape.
+
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<video
+    slot="media"
+    class="media-image"
+    src="/mesh-slicer/demonstration.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+/>
+
+<div slot="content">
+## Distance Constraint
+In order to maintain the boundaries the shape spawns with, there needs 
+to be a constraint for each point to maintain a certain distance 
+away from its adjacently connected points.
+
+To do this I iterate over each surface edge of the shape and compare 
+their distance. If an edge’s current distance is not aligned with the rest 
+length, I distribute half of the correction length for each point in the edge 
+to push it back into its resting length. Except I don’t apply the corrections 
+directly. I only apply all the collected corrections for each point once 
+all the corrections have been calculated. This minimizes a correctional bias 
+which makes the shape rotate in the order of the edges iteration order.
+
+However one iteration is not enough to satisfy the constraints due to the 
+correctional bias. So if I want the distance constraints to converge faster 
+I would need to increase the amount of iterations for this solver. 
+In other words, this is an **iterative distance constraint**.
+
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    class="media-image"
+    src="/mesh-slicer/demonstration.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+/>
+
+<div slot="content">
+## Area/Volume Constraint
+The next step is to create a constraint that preserves the volume of the shape.
+
+The constraint I’ve implemented calculates the difference 
+between the shape’s current area with its original rest area 
+using the [shoelace formula](https://en.wikipedia.org/wiki/Shoelace_formula). 
+This produces an area difference that indicates whether the 
+shape has been compressed or expanded. To correct this 
+area difference, I calculate the [gradient](https://en.wikipedia.org/wiki/Gradient) 
+for each point. Each gradient describes how each point should move 
+to preserve the volume of the shape.
+
+By applying these gradients to each point, the shape resists 
+excessive compression and expansion to preserve the volume of the shape.
+
+This is another **iterative dependent constraint**, which means that the 
+shape will become firmer with increased solver iterations and squishier 
+with fewer iterations.
+
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<video
+    slot="media"
+    class="media-image"
+    src="/mesh-slicer/demonstration.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+/>
+
+<div slot="content">
+## Extended Position Based Dynamics (XPBD)
+The limitation of the previous distance and volume constraints is 
+that their behavior is dependent on the time step and iteration 
+count of the simulation. The constraints become arbitrarily stiff 
+as the iteration count increases or as the time step decreases.
+
+[XPBD](https://matthias-research.github.io/pages/publications/XPBD.pdf) 
+extends traditional Position Based Dynamics by introducing 
+**“Compliance”**, allowing constraints to be tweakable independently 
+from time step and iteration count.
+
+How it’s been implemented is through a [Lagrange Multiplier](https://en.wikipedia.org/wiki/Lagrange_multiplier) 
+to determine how strongly a constraint should be corrected. 
+While compliance controls how easily the constraint can be violated.
+
+Together makes it possible to define how strongly a soft body resists 
+deformation while maintaining consistent physical behavior across 
+solver iteration counts.
+
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    class="media-image"
+    src="/mesh-slicer/demonstration.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+/>
+
+<div slot="content">
+## Collision Solver
+This solver is divided into three phases: <br/>
+-- Broad Phase Detection <br/>
+-- Narrow Phase Detection <br/>
+-- Collision Resolution <br/>
+
+The first step is **broad phase collision detection**. Each shape has a 
+bounding box that detects the bounding box of other nearby shapes. 
+This method filters out collision tests against shapes that aren’t 
+close to each other.
+
+The next phase is the narrow phase collision detection. The way I detect polygon 
+collisions is by finding out if any point is inside either shape. 
+For each point I perform a **horizontal raycast** and count how many 
+edges the raycast is intersecting. If the number of intersections is 
+odd, then the point is inside the shape. If it’s even the point 
+is outside the shape.
+
+The last phase is collision resolution. For each pair of shapes 
+involved in the collision. I take each point that’s inside the 
+opposite shape. find the closest edge and move it outside the shape.
+
+If the point’s velocity is moving into the opposite shape, I 
+apply friction and restitution or bounce by changing the point’s 
+velocity in the direction of the collision normal. The problem 
+here is that the point doesn’t have an explicit velocity due 
+to Verlet Integration. So how I change the velocity is by 
+**manipulating the previous position** in a way that creates 
+a new velocity aimed in the direction of the collision normal.
+
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<video
+    slot="media"
+    class="media-image"
+    src="/mesh-slicer/demonstration.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+/>
+
+<div slot="content">
+## Multi-Threaded Collision Solver
+Setting up and running the threads is done in three phases: <br/>
+-- Setup thread data  <br/>
+-- Run threads  <br/>
+-- Apply corrections  <br/>
+
+According to Godot documentation, 
+[interacting with the active scene tree is not thread safe](https://docs.godotengine.org/en/stable/tutorials/performance/thread_safe_apis.html#doc-thread-safe-apis). 
+So I created a snapshot of the simulation data to be distributed 
+across the worker threads. This will ensure that there are no 
+race conditions when reading the shape data.
+
+Inside each worker thread I run the normal collision solver logic 
+except I don’t resolve the resolutions directly. Instead, I register 
+all correction vectors for the points that need resolving. Once all 
+the worker threads have finished calculating all the collision 
+resolutions, I apply all those resolutions on the main thread.
+
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="right">
+<video
+    slot="media"
+    class="media-image"
+    src="/mesh-slicer/demonstration.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+/>
+
+<div slot="content">
+## Future improvements:
+- Improve Threading: <br/>
+Threading the collision solver didn’t give the massive performance 
+gain that I expected and experienced the cold bucket of water 
+that is Amdahl’s Law about parallelization. Which explains the 
+limits of threading and why adding more threads doesn’t 
+achieve more performance.
+ 
+- Resting state: <br/>
+Stacking shapes on top of each other causes them to oscillate 
+which never comes to a stop. I think adding a rest state 
+or additional inertia when several shapes are applying 
+pressure could remedy this behavior.
+ 
+- Callback events: <br/>
+Adding collision callback functionality opens the window 
+for customizable behaviors
+
+</div>
+</MediaEntry>
+
+<EntryBorder/>
+
+<MediaEntry mediaSide="left">
+<video
+    slot="media"
+    class="media-image"
+    src="/mesh-slicer/demonstration.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+/>
+
+<div slot="content">
+## Thanks for reading all the way!
+I know this feature looks a little silly but the powerful 
+math behind it is nothing to scuff at. I have yet to reach 
+this feature’s full potential, but we’ll see how far I can 
+push it into a fun little game!
+
+References: <br/>
+-- [Physics of JellyCar: Soft Body Physics Explained  - Walaber Entertainment](https://www.youtube.com/watch?v=3OmkehAJoyo) <br/>
+
+-- [Simulating soft body animals - argonaut](https://www.youtube.com/watch?v=GXh0Vxg7AnQ&t=185s) <br/>
+
+-- [Soft Body Physics Explained - Gonkee](https://www.youtube.com/watch?v=kyQP4t_wOGI) <br/>
+
+-- [Verlet Solver - simplest physics engine implementation](https://www.proceduralpixels.com/blog/verlet-solver---simplest-physics-engine-implementation) <br/>
+
+-- [PBD: Position-Based Simulation of Compliant Constrained Dynamics](https://matthias-research.github.io/pages/publications/XPBD.pdf) <br/>
+
+</div>
+</MediaEntry>

@@ -3,14 +3,14 @@ import TgaProjectsImage from "../assets/tga-projects/tga-projects.png"
 
 export const projects2x2 = [
     {
-        title: "TGA Projects",
+        title: "Jelly Physics",
         subtitle: "C++ • OpenGL",
-        href: "/archive/tga-projects/tga-projects",
+        href: "/projects/jelly-physics",
         image: TgaProjectsImage,
         video: "/tga-projects-reel.webm",
         objectFit: "cover"
     },
-        {
+    {
         title: "Mesh Slicer",
         subtitle: "C++ • OpenGL",
         href: "/projects/mesh-slicer",
