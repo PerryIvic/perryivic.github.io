@@ -1,8 +1,10 @@
-import '../styles/global.css';
+import '../styles/content.css';
 
 import HomeEntry from "../layouts/HomeEntry.astro";
 import EntryBorder from "../components/EntryBorder.astro";
 import ProjectGrid from "../components/ProjectGrid.astro";
+import IconList from "../components/IconList.astro"
+
 import { projects2x2 } from "../project-data/projects-2x2.ts";
 
 import ProfilePicture from "../assets/profile-picture-circle.png"
@@ -17,6 +19,20 @@ import ProfilePicture from "../assets/profile-picture-circle.png"
 I'm a software developer working at Tenstar Simulation.
 
 This site is filled with cool stuff that I have made throughout my programming career.
+
+<IconList direction="horizontal"
+items={[
+  {
+    icon: "linkedin_icon", 
+    href: "https://www.linkedin.com/in/perry-ivic/",
+    label: "LinkedIn"
+  },
+  {
+    icon: "github_invertocat_white", 
+    href: "https://github.com/PerryIvic",
+    label: "GitHub"
+  }
+]}/>
 
 </HomeEntry>
 

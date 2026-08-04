@@ -3,6 +3,7 @@ import '../../styles/content.css';
 import MediaEntry from "../../layouts/MediaEntry.astro";
 import EntryBorder from "../../components/EntryBorder.astro";
 import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
+import IconList from "../../components/IconList.astro"
 
 
 <MediaEntry mediaSide="right">
@@ -19,7 +20,14 @@ import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
 <div slot="content">
 # Jelly Physics
 Engine: Godot <br/>
-[Github](https://github.com/PerryIvic/Mesh-Slicer)
+<IconList direction="vertical"
+items={[
+  {
+    icon: "github_invertocat_white", 
+    href: "https://github.com/PerryIvic/Mesh-Slicer",
+    label: "GitHub"
+  }
+]}/> <br/>
 
 Contents: <br/>
 -- Verlet Integration <br/>

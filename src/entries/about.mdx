@@ -1,6 +1,8 @@
 import { Image } from "astro:assets";
 import '../styles/content.css'; 
 
+import IconList from "../components/IconList.astro"
+
 import MediaEntry from "../layouts/MediaEntry.astro";
 import ProfilePictureFull from "../assets/profile-picture-full-size.png"
 
@@ -20,6 +22,22 @@ Hi, my name is Perry and I'm one of those people with “extra” in their perso
 I like to make people laugh and challenge myself by learning something new.
 
 I will neither confirm or deny claims of being platypus...
+
+<IconList direction="vertical"
+items={[
+  {
+    icon: "linkedin_icon", 
+    href: "https://www.linkedin.com/in/perry-ivic/",
+    label: "LinkedIn"
+  },
+  {
+    icon: "github_invertocat_white", 
+    href: "https://github.com/PerryIvic",
+    label: "GitHub"
+  }
+]}/>
 </div>
+
+
 
 </MediaEntry>

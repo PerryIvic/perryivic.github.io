@@ -4,6 +4,7 @@ import '../../styles/content.css';
 import MediaEntry from "../../layouts/MediaEntry.astro";
 import EntryBorder from "../../components/EntryBorder.astro";
 import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
+import IconList from "../../components/IconList.astro"
 
 import Slide1x1 from "../../assets/projects/mesh-slicer/slide-1-1.png"
 import Slide2x1 from "../../assets/projects/mesh-slicer/slide-2-1.png"
@@ -33,7 +34,15 @@ import Slide10x1 from "../../assets/projects/mesh-slicer/slide-10-1.png"
 <div slot="content">
 # Mesh Slicer
 Engine: Unity <br/>
-[Github](https://github.com/PerryIvic/Mesh-Slicer)
+<IconList direction="vertical"
+items={[
+  {
+    icon: "github_invertocat_white", 
+    href: "https://github.com/PerryIvic/Mesh-Slicer",
+    label: "GitHub"
+  }
+]}/> <br/>
+
 ## Summary
 I have recreated the "blade mode" from [Metal Gear Rising: Revengeance](https://en.wikipedia.org/wiki/Metal_Gear_Rising:_Revengeance). 
 The mechanic allows the player to split any mesh into two meshes using 
