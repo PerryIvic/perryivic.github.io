@@ -42,6 +42,7 @@ const {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    margin-top: 0.5rem;
   }
 
   .icon {
@@ -53,6 +54,9 @@ const {
     font-family: Consolas, "Courier New", monospace;
     font-size: 18px;
     line-height: 1.5;
+    
+    color: #66A819;
+    text-decoration: underline;
 }
 </style>
 
@@ -66,7 +70,7 @@ const {
     rel="noopener noreferrer"
   >
     <Icon name={item.icon} class="icon" />
-    <span class="content">{item.label}</span>
+    <span>{item.label}</span>
   </a>
 ))}
 </div>

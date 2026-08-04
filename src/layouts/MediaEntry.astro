@@ -28,6 +28,8 @@ const {
 
 .media {
     justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
 }
 
 .media > * {
@@ -44,12 +46,13 @@ const {
 
 .reverse .media {
     justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
 .reverse .content {
     justify-content: flex-end;
 }
-
 </style>
 
 <section class:list={["media-entry", mediaSide === "right" && "reverse"]}>
