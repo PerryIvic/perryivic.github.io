@@ -1,0 +1,72 @@
+---
+import '../styles/content.css';
+
+import { Icon } from 'astro-icon/components';
+
+interface IconItem {
+  icon: string;
+  href: string;
+  label: string;
+}
+
+interface Props {
+  items: IconItem[];
+  direction?: 'horizontal' | 'vertical';
+}
+
+const {
+  items,
+  direction = 'horizontal'
+} = Astro.props;
+---
+
+<style>
+  .icon-list {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .icon-list.vertical {
+    flex-direction: column;
+  }
+
+  .icon-link.vertical {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 0.5rem;
+  }
+
+  .icon-link.horizontal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+.icon-link span{
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 18px;
+    line-height: 1.5;
+}
+</style>
+
+<div class={`icon-list ${direction}`}>
+{items.map((item) => (
+  <a
+    class={`icon-link ${direction}`}
+    href={item.href}
+    aria-label={item.label}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Icon name={item.icon} class="icon" />
+    <span class="content">{item.label}</span>
+  </a>
+))}
+</div>
