@@ -1,9 +1,12 @@
+import { Image } from "astro:assets";
 import '../../styles/content.css'; 
 
 import MediaEntry from "../../layouts/MediaEntry.astro";
 import EntryBorder from "../../components/EntryBorder.astro";
 import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
 import IconList from "../../components/IconList.astro"
+
+import Slide1x1 from "../../assets/projects/mesh-slicer/slide-1-1.png"
 
 
 <MediaEntry mediaSide="right">
@@ -52,15 +55,13 @@ for jelly shapes due to their mesmerizing and wiggly nature.
 <EntryBorder/>
 
 <MediaEntry mediaSide="left">
-<video
-    slot="media"
+<div slot="media">
+<Image
+    src={Slide1x1}
+    alt="Slide1x1"
     class="media-image"
-    src="/mesh-slicer/demonstration.webm"
-    autoplay
-    muted
-    loop
-    playsinline
 />
+</div>
 
 <div slot="content">
 ## Defining a shape
@@ -74,29 +75,27 @@ Each point is defined by a position.
 <EntryBorder/>
 
 <MediaEntry mediaSide="right">
-<video
-    slot="media"
+<div slot="media">
+<Image
+    src={Slide1x1}
+    alt="Slide1x1"
     class="media-image"
-    src="/mesh-slicer/demonstration.webm"
-    autoplay
-    muted
-    loop
-    playsinline
 />
+</div>
 
 <div slot="content">
 ## Verlet Integration
 The points in the shape need to move, which means they need velocity and 
 gravity to be applied to them every frame.
 
-Instead of accumulating forces into a persistent velocity variable ([Euler integration](https://en.wikipedia.org/wiki/Euler_method)) 
-I instead went with [Verlet Integration](https://en.wikipedia.org/wiki/Verlet_integration). 
+A common way to do this is by creating an explicit velocity variable that you apply forces to ([Euler Integration](https://en.wikipedia.org/wiki/Euler_method)).
+I instead implemented [Verlet Integration](https://en.wikipedia.org/wiki/Verlet_integration). 
 This means that velocity is implicit and is 
 calculated by creating a vector based on the point’s previous and current position.
 
-The advantages of using implicit velocity is that it’s simple to implement and prevents 
+The advantages of using Verlet Integration is that it’s simple to implement and prevents 
 forces from accumulating and causing explosive behavior. However, this stability 
-comes with the cost of losing explicit control over the velocity, making it trickier 
+comes with the cost of losing direct control over a point's velocity, making it trickier 
 to apply forces on a shape.
 
 </div>
@@ -105,15 +104,13 @@ to apply forces on a shape.
 <EntryBorder/>
 
 <MediaEntry mediaSide="left">
-<video
-    slot="media"
+<div slot="media">
+<Image
+    src={Slide1x1}
+    alt="Slide1x1"
     class="media-image"
-    src="/mesh-slicer/demonstration.webm"
-    autoplay
-    muted
-    loop
-    playsinline
 />
+</div>
 
 <div slot="content">
 ## Distance Constraint
@@ -140,15 +137,13 @@ In other words, this is an **iterative distance constraint**.
 <EntryBorder/>
 
 <MediaEntry mediaSide="right">
-<video
-    slot="media"
+<div slot="media">
+<Image
+    src={Slide1x1}
+    alt="Slide1x1"
     class="media-image"
-    src="/mesh-slicer/demonstration.webm"
-    autoplay
-    muted
-    loop
-    playsinline
 />
+</div>
 
 <div slot="content">
 ## Area/Volume Constraint
@@ -158,7 +153,7 @@ The constraint I’ve implemented calculates the difference
 between the shape’s current area with its original rest area 
 using the [shoelace formula](https://en.wikipedia.org/wiki/Shoelace_formula). 
 This produces an area difference that indicates whether the 
-shape has been compressed or expanded. To correct this 
+shape has increased or decreased in size. To correct this 
 area difference, I calculate the [gradient](https://en.wikipedia.org/wiki/Gradient) 
 for each point. Each gradient describes how each point should move 
 to preserve the volume of the shape.
@@ -176,27 +171,25 @@ with fewer iterations.
 <EntryBorder/>
 
 <MediaEntry mediaSide="left">
-<video
-    slot="media"
+<div slot="media">
+<Image
+    src={Slide1x1}
+    alt="Slide1x1"
     class="media-image"
-    src="/mesh-slicer/demonstration.webm"
-    autoplay
-    muted
-    loop
-    playsinline
 />
+</div>
 
 <div slot="content">
 ## Extended Position Based Dynamics (XPBD)
 The limitation of the previous distance and volume constraints is 
-that their behavior is dependent on the time step and iteration 
-count of the simulation. The constraints become arbitrarily stiff 
-as the iteration count increases or as the time step decreases.
+that their behavior is dependent on the iteration 
+count of the simulation. The constraints become more stiff 
+as the iteration count increases and vice versa.
 
 [XPBD](https://matthias-research.github.io/pages/publications/XPBD.pdf) 
 extends traditional Position Based Dynamics by introducing 
-**“Compliance”**, allowing constraints to be tweakable independently 
-from time step and iteration count.
+**“Compliance”**, allowing constraints to be altered independently 
+from iteration count.
 
 How it’s been implemented is through a [Lagrange Multiplier](https://en.wikipedia.org/wiki/Lagrange_multiplier) 
 to determine how strongly a constraint should be corrected. 
@@ -212,15 +205,13 @@ solver iteration counts.
 <EntryBorder/>
 
 <MediaEntry mediaSide="right">
-<video
-    slot="media"
+<div slot="media">
+<Image
+    src={Slide1x1}
+    alt="Slide1x1"
     class="media-image"
-    src="/mesh-slicer/demonstration.webm"
-    autoplay
-    muted
-    loop
-    playsinline
 />
+</div>
 
 <div slot="content">
 ## Collision Solver
@@ -259,15 +250,13 @@ a new velocity aimed in the direction of the collision normal.
 <EntryBorder/>
 
 <MediaEntry mediaSide="left">
-<video
-    slot="media"
+<div slot="media">
+<Image
+    src={Slide1x1}
+    alt="Slide1x1"
     class="media-image"
-    src="/mesh-slicer/demonstration.webm"
-    autoplay
-    muted
-    loop
-    playsinline
 />
+</div>
 
 <div slot="content">
 ## Multi-Threaded Collision Solver
@@ -294,15 +283,13 @@ resolutions, I apply all those resolutions on the main thread.
 <EntryBorder/>
 
 <MediaEntry mediaSide="right">
-<video
-    slot="media"
+<div slot="media">
+<Image
+    src={Slide1x1}
+    alt="Slide1x1"
     class="media-image"
-    src="/mesh-slicer/demonstration.webm"
-    autoplay
-    muted
-    loop
-    playsinline
 />
+</div>
 
 <div slot="content">
 ## Future improvements:
@@ -332,7 +319,7 @@ for customizable behaviors
 <video
     slot="media"
     class="media-image"
-    src="/mesh-slicer/demonstration.webm"
+    src="/jelly-physics/jelly-physics-reel.webm"
     autoplay
     muted
     loop
