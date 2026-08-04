@@ -283,39 +283,6 @@ resolutions, I apply all those resolutions on the main thread.
 <EntryBorder/>
 
 <MediaEntry mediaSide="right">
-<div slot="media">
-<Image
-    src={Slide1x1}
-    alt="Slide1x1"
-    class="media-image"
-/>
-</div>
-
-<div slot="content">
-## Future improvements:
-- Improve Threading: <br/>
-Threading the collision solver didn’t give the massive performance 
-gain that I expected and experienced the cold bucket of water 
-that is Amdahl’s Law about parallelization. Which explains the 
-limits of threading and why adding more threads doesn’t 
-achieve more performance.
- 
-- Resting state: <br/>
-Stacking shapes on top of each other causes them to oscillate 
-which never comes to a stop. I think adding a rest state 
-or additional inertia when several shapes are applying 
-pressure could remedy this behavior.
- 
-- Callback events: <br/>
-Adding collision callback functionality opens the window 
-for customizable behaviors
-
-</div>
-</MediaEntry>
-
-<EntryBorder/>
-
-<MediaEntry mediaSide="left">
 <video
     slot="media"
     class="media-image"
