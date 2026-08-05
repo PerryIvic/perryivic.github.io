@@ -1,0 +1,93 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+}
+
+const { src, alt = "" } = Astro.props;
+---
+
+<style>
+.video-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+
+.play-button {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50%;
+  background: rgb(0 0 0 / 0.6);
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.play-button:hover {
+  background: rgb(0 0 0 / 0.75);
+}
+</style>
+
+<div class="video-wrapper">
+  <video
+    class="video"
+    muted
+    playsinline
+    preload="metadata"
+  >
+    <source src={src} type="video/webm" />
+    {alt}
+  </video>
+
+  <button
+    class="play-button"
+    aria-label="Play video"
+    type="button"
+  >
+    ▶
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll(".video-wrapper").forEach((wrapper) => {
+    const video = wrapper.querySelector("video") as HTMLVideoElement | null;
+    const button = wrapper.querySelector(".play-button") as HTMLButtonElement | null;
+    if (!video || !button) {
+      console.error("VideoPlayer: missing video or play button", { wrapper });
+      return
+    }
+
+    button.addEventListener("click", async () => {
+      try {
+        await video.play();
+        button.hidden = true;
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
+    video.addEventListener("click", () => {
+      if (video.paused) {
+        video.play();
+        button.hidden = true;
+      } else {
+        video.pause();
+      }
+    });
+
+    video.addEventListener("pause", () => {
+      button.hidden = false;
+    });
+  });
+</script>
+
