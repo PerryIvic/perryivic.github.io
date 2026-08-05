@@ -5,8 +5,11 @@ import MediaEntry from "../../layouts/MediaEntry.astro";
 import EntryBorder from "../../components/EntryBorder.astro";
 import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
 import IconList from "../../components/IconList.astro"
+import VideoPlayer from "../../components/VideoPlayer.astro"
 
-import Slide1x1 from "../../assets/projects/mesh-slicer/slide-1-1.png"
+import Slide1x1 from "../../assets/projects/jelly-physics/slide-1-1.png"
+import Slide2x1 from "../../assets/projects/jelly-physics/slide-2-1.png"
+import Slide3x1 from "../../assets/projects/jelly-physics/slide-3-1.png"
 
 
 <MediaEntry mediaSide="right">
@@ -37,7 +40,7 @@ Engine: Godot <br/>
 Contents: <br/>
 -- Verlet Integration <br/>
 -- Distance Constraint <br/>
--- Area/Volume Constraint <br/>
+-- Area Constraint <br/>
 -- Extended Position Based Dynamics (XPBD) <br/>
 -- Threaded Collision Solver <br/>
 
@@ -45,7 +48,7 @@ Contents: <br/>
 Jelly Physics or Soft Body Physics is a way to visually represent shapes 
 that are elastic, deformable and compressed. In physics terms, 
 these deformable shapes are referred to as [Soft Bodies](https://en.wikipedia.org/wiki/Soft-body_dynamics).
-Which can represent vehicle damage, clothing or in my case jelly characters!
+Which can represent vehicle damage, clothing or in my case happy little jelly characters!
 
 The reason why I made this feature is because I’m planning to use it for 
 a game with said jelly characters. And because I’ve always had a soft spot (pun very much intended) 
@@ -67,9 +70,9 @@ for jelly shapes due to their mesmerizing and wiggly nature.
 
 <div slot="content">
 ## Defining a shape
-A shape or a polygon is made out of points that are connected to each other.
+A shape or a polygon is made out of points that are sequentially connected to each other.
 
-Each point is defined by a position.
+Between each pair of points is a surface that's called an edge.
 
 </div>
 </MediaEntry>
@@ -79,8 +82,8 @@ Each point is defined by a position.
 <MediaEntry mediaSide="right">
 <div slot="media">
 <Image
-    src={Slide1x1}
-    alt="Slide1x1"
+    src={Slide2x1}
+    alt="Slide2x1"
     class="media-image"
 />
 </div>
@@ -108,30 +111,34 @@ to apply forces on a shape.
 <MediaEntry mediaSide="left">
 <div slot="media">
 <Image
-    src={Slide1x1}
-    alt="Slide1x1"
+    src={Slide3x1}
+    alt="Slide3x1"
     class="media-image"
+/>
+
+<VideoPlayer
+  src="/jelly-physics/distance-constraint.webm"
+  alt="distance constraint"
 />
 </div>
 
 <div slot="content">
 ## Distance Constraint
 In order to maintain the boundaries the shape spawns with, there needs 
-to be a constraint for each point to maintain a certain distance 
-away from its adjacently connected points.
+to be a constraint for each edge to maintain its resting length.
 
-To do this I iterate over each surface edge of the shape and compare 
-their distance. If an edge’s current distance is not aligned with the rest 
-length, I distribute half of the correction length for each point in the edge 
-to push it back into its resting length. Except I don’t apply the corrections 
-directly. I only apply all the collected corrections for each point once 
-all the corrections have been calculated. This minimizes a correctional bias 
-which makes the shape rotate in the order of the edges iteration order.
+To do this I iterate over each surface edge of the shape and do a distance comparison. 
+If an edge’s current distance is not aligned with its rest length, 
+I find the center of the edge and project half of the length needed for each point 
+to reach the edge's resting length.
 
-However one iteration is not enough to satisfy the constraints due to the 
-correctional bias. So if I want the distance constraints to converge faster 
-I would need to increase the amount of iterations for this solver. 
-In other words, this is an **iterative distance constraint**.
+However one iteration is not enough to satisfy the constraints due to a 
+correctional bias. After an edge's points have been moved to satisfy their constraint, the next 
+edge will need to alter a connected point of the previous edge to do the same. 
+This violates the constraint of the previous edge and will need to be corrected again.
+
+If we want the constraints to converge faster, more iterations of the distance constraint 
+would need to be performed. In other words, this is an **iterative distance constraint**.
 
 </div>
 </MediaEntry>
@@ -145,23 +152,29 @@ In other words, this is an **iterative distance constraint**.
     alt="Slide1x1"
     class="media-image"
 />
+
+<VideoPlayer
+  src="/jelly-physics/area-constraint.webm"
+  alt="area constraint"
+/>
 </div>
 
-<div slot="content">
-## Area/Volume Constraint
-The next step is to create a constraint that preserves the volume of the shape.
 
-The constraint I’ve implemented calculates the difference 
-between the shape’s current area with its original rest area 
+<div slot="content">
+## Area Constraint
+The next step is to create a constraint that preserves the shape's area.
+
+The constraint calculates the difference 
+between the shape’s current area with its original area 
 using the [shoelace formula](https://en.wikipedia.org/wiki/Shoelace_formula). 
-This produces an area difference that indicates whether the 
-shape has increased or decreased in size. To correct this 
-area difference, I calculate the [gradient](https://en.wikipedia.org/wiki/Gradient) 
-for each point. Each gradient describes how each point should move 
-to preserve the volume of the shape.
+The difference indicates whether the 
+shape has increased or decreased in size relative to its original area. To correct this 
+error, I calculate a [gradient](https://en.wikipedia.org/wiki/Gradient) 
+for each point. Each gradient represents the direction in which a point should 
+move to most effectively restore the original area.
 
 By applying these gradients to each point, the shape resists 
-excessive compression and expansion to preserve the volume of the shape.
+excessive compression and expansion to preserve the area of the shape.
 
 This is another **iterative dependent constraint**, which means that the 
 shape will become firmer with increased solver iterations and squishier 
@@ -183,7 +196,7 @@ with fewer iterations.
 
 <div slot="content">
 ## Extended Position Based Dynamics (XPBD)
-The limitation of the previous distance and volume constraints is 
+The limitation of the previous distance and area constraints is 
 that their behavior is dependent on the iteration 
 count of the simulation. The constraints become more stiff 
 as the iteration count increases and vice versa.
@@ -305,7 +318,7 @@ push it into a fun little game!
 References: <br/>
 -- [Physics of JellyCar: Soft Body Physics Explained  - Walaber Entertainment](https://www.youtube.com/watch?v=3OmkehAJoyo) <br/>
 
--- [Simulating soft body animals - argonaut](https://www.youtube.com/watch?v=GXh0Vxg7AnQ&t=185s) <br/>
+-- [Simulating soft body animals - argonaut](https://youtu.be/GXh0Vxg7AnQ?si=WvIuYBJOmLhl4l8l) <br/>
 
 -- [Soft Body Physics Explained - Gonkee](https://www.youtube.com/watch?v=kyQP4t_wOGI) <br/>
 
