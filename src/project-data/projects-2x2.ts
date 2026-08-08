@@ -1,13 +1,13 @@
 import MeshSlicerImage from "../assets/projects/mesh-slicer/mesh-slicer-cover.png"
-import TgaProjectsImage from "../assets/tga-projects/tga-projects.png"
+import jellyPhysicsImage from "../assets/projects/jelly-physics/jelly-physics-title.png"
 
 export const projects2x2 = [
     {
         title: "Jelly Physics",
         subtitle: "C++ • OpenGL",
         href: "/projects/jelly-physics",
-        image: TgaProjectsImage,
-        video: "/tga-projects-reel.webm",
+        image: jellyPhysicsImage,
+        video: "/jelly-physics/jelly-physics-title.webm",
         objectFit: "cover"
     },
     {
