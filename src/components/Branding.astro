@@ -1,28 +1,47 @@
+
 ---
-const {name, title} = Astro.props;
+const { name, title } = Astro.props;
 ---
+
 <style>
-    .branding h1 {
+  .branding {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .branding a {
+    display: block;
+    max-width: 100%;
+
+    color: white;
+    text-decoration: none;
+  }
+
+  .branding h1 {
     margin: 0;
-    font-size: 2rem;
+
+    font-size: clamp(1.4rem, 6vw, 2rem);
     line-height: 1;
-    font-family: Verdana;
+
+    font-family: Verdana, sans-serif;
     text-transform: uppercase;
+
+    overflow-wrap: break-word;
   }
 
   .branding h2 {
     margin: 0.35rem 0 0;
+
     color: #888;
-    font-size: 1rem;
-    font-family: Verdana;
+    font-size: clamp(0.75rem, 3vw, 1rem);
+
+    font-family: Verdana, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+
+    overflow-wrap: break-word;
   }
 
-  .branding a {
-    color: white;
-    text-decoration: none;
-  }
 </style>
 
 <div class="branding">

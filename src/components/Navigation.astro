@@ -1,66 +1,96 @@
 ---
-import '../styles/global.css';
+import "./../styles/navigation.css";
 import Dropdown from "./Dropdown.astro";
 
 const currentPath = Astro.url.pathname;
 ---
 
 <style>
-.nav-list {
+  .navigation {
+    width: 100%;
+  }
+
+  .navigation > ul {
     display: flex;
-    gap: 4rem;
-    list-style: none;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    gap: 4.0rem;
+
     margin: 0;
     padding: 0;
-}
+
+    list-style: none;
+
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .navigation > ul > li {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  @media (max-width: 768px) {
+    .navigation > ul {
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 0.75rem 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .navigation > ul {
+      gap: 0.5rem 1.75rem;
+    }
+  }
 </style>
 
-<nav>
-    <ul class="nav-list">
+<nav class="navigation">
+  <ul>
+    <li>
+      <a
+        href="/"
+        class:list={[
+          "nav-link",
+          { active: currentPath === "/" }
+        ]}
+      >
+        Home
+      </a>
+    </li>
 
-        <li>
-            <a
-                href="/"
-                class:list={[
-                    "nav-link",
-                    { active: currentPath === "/" }
-                ]}
-            >
-                Home
-            </a>
-        </li>
+    <Dropdown
+      href="/projects"
+      label="Projects"
+      currentPath={currentPath}
+      items={[
+        { href: "/projects/jelly-physics", text: "Jelly Physics" },
+        { href: "/projects/mesh-slicer", text: "Mesh Slicer" }
+      ]}
+    />
 
-        <Dropdown
-            href="/projects"
-            label="Projects"
-            currentPath={currentPath}
-            items={[
-                { href: "/projects/jelly-physics", text: "Jelly Physics" },
-                { href: "/projects/mesh-slicer", text: "Mesh Slicer" }
-            ]}
-        />
+    <Dropdown
+      href="/archive"
+      label="Archive"
+      currentPath={currentPath}
+      items={[
+        { href: "/archive/tga-projects/tga-projects", text: "TGA Projects" },
+        { href: "/archive/game-jams/game-jams", text: "Game Jams" }
+      ]}
+    />
 
-        <Dropdown
-            href="/archive"
-            label="Archive"
-            currentPath={currentPath}
-            items={[
-                { href: "/archive/tga-projects/tga-projects", text: "TGA Projects" },
-                { href: "/archive/game-jams/game-jams", text: "Game Jams" }
-            ]}
-        />
-
-        <li>
-            <a
-                href="/about"
-                class:list={[
-                    "nav-link",
-                    { active: currentPath === "/about" }
-                ]}
-            >
-                About
-            </a>
-        </li>
-
-    </ul>
+    <li>
+      <a
+        href="/about"
+        class:list={[
+          "nav-link",
+          { active: currentPath === "/about" }
+        ]}
+      >
+        About
+      </a>
+    </li>
+  </ul>
 </nav>
