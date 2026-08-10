@@ -7,18 +7,27 @@ const {pageTitle} = Astro.props
 const pageSuffix = "Perry Ivic's Software Developer Portfolio"
 
 ---
+
+<style> 
+.page-container { 
+  width: min(100% - 2rem, 1300px); 
+  margin-inline: auto; 
+} 
+</style>
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="/icon.png" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle + " | " + pageSuffix}</title>
   </head>
   
   <body>
     <Header />
-    <slot />
+    <main class="page-container"> 
+      <slot /> 
+    </main>
   </body>
   
   <EntryBorder/>
