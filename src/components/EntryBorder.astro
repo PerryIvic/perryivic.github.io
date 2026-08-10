@@ -5,43 +5,41 @@ import EntryIcon from "../assets/entry-border-icon.png"
 const alt = "Border icon"
 ---
 
-<style>
-.project-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 1.5rem;
-
-    margin: 1rem auto;
-    width: min(1300px, 90%);
-}
-
-.line {
-    border-right: none;
-    flex: 1;
-    height: 0;
-    border-top: 1px solid #555;
-}
-
-.divider-image {
-    width: 64px;
-    height: auto;
-}
+<style> 
+.entry-border { 
+    display: flex; 
+    align-items: center; 
+    width: calc(100% - 3rem);
+    max-width: 1300px;
+    margin: 2rem auto;
+    gap: clamp(0.75rem, 3vw, 1.5rem); 
+} 
+    
+.line { 
+    flex: 1; 
+    height: 1px; 
+    background: #555; 
+} 
+    
+.divider-image { 
+    width: clamp(2rem, 8vw, 4rem); 
+    height: auto; flex: 0 0 auto; 
+} 
+@media (max-width: 480px) { 
+    .entry-border { 
+        gap: 0.6rem; 
+        margin: 1.5rem 0; } 
+            
+    .divider-image {
+        width: 2.5rem; 
+    } 
+} 
 </style>
 
-<section class="project-wrapper">
-    <div class="divider">
-        <div class="line"></div>
+<div class="entry-border" aria-hidden="true"> 
+    <div class="line"></div> 
+    
+    <Image src={EntryIcon} alt={alt} class="divider-image" /> 
 
-        <Image src={EntryIcon} alt={alt} class="divider-image" />
-
-        <div class="line"></div>
-    </div>
-</section>
+    <div class="line"></div> 
+</div>
