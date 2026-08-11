@@ -53,6 +53,50 @@ const {
 .reverse .content {
     justify-content: flex-end;
 }
+
+@media (max-width: 768px) { 
+    .media-entry, 
+    .media-entry.reverse { 
+        flex-direction: column; 
+        width: calc(100% - 2rem); 
+        gap: 1.5rem; 
+        margin: 1rem auto; 
+    } 
+        
+    .media, 
+    .content, 
+    .reverse 
+    .media, 
+    .reverse 
+    .content { 
+        width: 100%; 
+        max-width: 100%; 
+        margin-top: 1rem; 
+        justify-content: center; 
+        align-items: center; 
+    } 
+    
+    .media > * { 
+        width: 100%; 
+        max-width: 100%; 
+    } 
+} 
+
+@media (max-width: 480px) { 
+    .media-entry, 
+    .media-entry.reverse { 
+        width: calc(100% - 2rem); 
+        gap: 1rem; 
+    } 
+    .media, 
+    .content, 
+    .reverse 
+    .media, 
+    .reverse 
+    .content { 
+        margin-top: 0.5rem; 
+    } 
+}
 </style>
 
 <section class:list={["media-entry", mediaSide === "right" && "reverse"]}>
