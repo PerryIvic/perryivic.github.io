@@ -3,7 +3,12 @@ import Header from '../components/Header.astro';
 import EntryBorder from "../components/EntryBorder.astro";
 import '../styles/global.css';
 
-const {pageTitle} = Astro.props
+interface Props {
+  pageTitle : string;
+  showBackToTop?: boolean;
+}
+
+const {pageTitle, showBackToTop } = Astro.props
 const pageSuffix = "Perry Ivic's Software Developer Portfolio"
 
 ---
@@ -13,6 +18,35 @@ const pageSuffix = "Perry Ivic's Software Developer Portfolio"
   width: min(100% - 2rem, 1300px); 
   margin-inline: auto; 
 } 
+
+html {
+    scroll-behavior: smooth;
+}
+
+.back-to-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 3rem;
+  height: 3rem;
+  margin: 1.0rem auto 4.0rem auto;
+
+  border-radius: 50%;
+  background: #333;
+  color: white;
+  text-decoration: none;
+  font-size: 1.25rem;
+  line-height: 1;
+
+  transition: transform 0.2s ease;
+}
+
+.back-to-top:hover {
+  background: #555;
+  transform: translateY(-2px);
+}
+  
 </style>
 
 <html lang="en">
@@ -23,14 +57,21 @@ const pageSuffix = "Perry Ivic's Software Developer Portfolio"
     <title>{pageTitle + " | " + pageSuffix}</title>
   </head>
   
-  <body>
+  <body id="top">
     <Header />
     
     <main class="page-container"> 
       <slot /> 
     </main>
     <EntryBorder/>
+    
+    <footer>
+      {showBackToTop && (
+        <a href="#top" class="back-to-top" aria-label="Back to top">
+          ↑
+        </a>
+      )}
+    </footer>
   </body>
-  
 </html>
 
