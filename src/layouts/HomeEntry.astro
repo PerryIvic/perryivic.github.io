@@ -1,5 +1,5 @@
 ---
-import '../styles/content.css'; 
+import '../styles/content.css';
 import { Image } from 'astro:assets';
 
 interface Props {
@@ -9,51 +9,101 @@ interface Props {
   imageHeight?: string;
 }
 
-const { 
-  image, 
-  alt, 
-  imageSide = "left", 
+const {
+  image,
+  alt,
+  imageSide = "left",
   imageHeight = "300px"
-  } = Astro.props;
+} = Astro.props;
 ---
+
 <style>
-.project-entry {
+  .project-entry {
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 4rem;
     margin: 2rem auto 1rem auto;
-    width: min(1000px, 90%)
-}
 
-.project-entry.reverse {
+    width: min(1000px, 90%);
+  }
+
+  .project-entry.reverse {
     flex-direction: row-reverse;
-}
+  }
 
-.project-image {
-  height: var(--image-height);
-  width: auto;
-  border-radius: 8px;
-  flex-shrink: 0;
-  display: block;
-  border-radius: 32px;
-}
+  .project-image {
+    height: var(--image-height);
+    width: auto;
+    max-width: 100%;
 
-.content {
+    border-radius: 32px;
+
+    flex-shrink: 1;
+    display: block;
+  }
+
+  .content {
     max-width: 500px;
-}
+    min-width: 0;
+  }
 
+  @media (max-width: 768px) {
+    .project-entry,
+    .project-entry.reverse {
+      flex-direction: column;
+
+
+      gap: 1.5rem;
+      margin: 2rem auto;
+    }
+
+    .project-image {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+
+      max-height: 300px;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 100%;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .project-entry,
+    .project-entry.reverse {
+      width: calc(100% - 2rem);
+
+      gap: 1rem;
+      margin: 1.5rem auto;
+    }
+
+    .project-image {
+      max-height: 220px;
+      border-radius: 20px;
+    }
+  }
 </style>
 
-<section class={`project-entry ${imageSide === "right" ? "reverse" : ""}`}>
-  <Image 
-  src={image} 
-  alt={alt} 
-  class="project-image"
-  style={`height: ${imageHeight}; width: auto;`}
+<section
+  class:list={[
+    "project-entry",
+    { reverse: imageSide === "right" }
+  ]}
+>
+  <Image
+    src={image}
+    alt={alt}
+    class="project-image"
+    style={`--image-height: ${imageHeight};`}
   />
+
   <div class="content">
     <slot />
   </div>
 </section>
-

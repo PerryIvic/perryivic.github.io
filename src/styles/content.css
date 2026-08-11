@@ -51,5 +51,41 @@
     border: 1px solid #555;
 }
 
+@media (max-width: 768px) { 
+    .content h1 { 
+        font-size: 1.9rem; 
+    } 
+    
+    .content h2 { 
+        font-size: 1.5rem; 
+    } 
+    
+    .content p { 
+        font-size: 16px; 
+        line-height: 1.5; 
+    } .content li { 
+        font-size: 17px; 
+        line-height: 1.6; 
+    } 
+} 
 
+@media (max-width: 480px) { 
+    .content h1 { 
+        font-size: 1.6rem; 
+    } 
+
+    .content h2 { 
+        font-size: 1.3rem; 
+    } 
+    
+    .content p { 
+        font-size: 15px; 
+        line-height: 1.5; 
+    } 
+    
+    .content li { 
+        font-size: 16px; 
+        line-height: 1.5; 
+    } 
+}
 
