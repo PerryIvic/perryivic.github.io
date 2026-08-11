@@ -25,7 +25,7 @@ const { project } = Astro.props;
 
 .card-image-container { 
     width: 100%; 
-    aspect-ratio: 1 / 1; 
+    height: 400px;
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -43,9 +43,14 @@ const { project } = Astro.props;
 } 
 
 @media (max-width: 900px) { 
+    .card-image-container { 
+        height: 100%;
+        aspect-ratio: 1/1;
+    }
     .card:hover { 
         transform: none; 
     } 
+
 } 
 </style> 
 
