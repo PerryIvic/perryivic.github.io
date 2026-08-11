@@ -2,7 +2,6 @@
 import Header from '../components/Header.astro';
 import EntryBorder from "../components/EntryBorder.astro";
 import '../styles/global.css';
-import MeshSlicerCoverImage from '../assets/projects/mesh-slicer/mesh-slicer-cover.png'
 
 interface Props {
   pageTitle : string;
@@ -14,7 +13,7 @@ const pageSuffix = "Perry Ivic's Software Developer Portfolio"
 
 const description = "A portfolio showcasing my work, projects, and experience.";
 const url = "https://perryivic.github.io/";
-
+const imageUrl = `${url}/icon.png`;
 ---
 
 <style> 
@@ -64,7 +63,7 @@ html {
     <meta property="og:url" content={url} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(MeshSlicerCoverImage.src, Astro.site)} />
+    <meta property="og:image" content={imageUrl} />
   </head>
   
   <body id="top">
