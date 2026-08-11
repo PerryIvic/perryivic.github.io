@@ -4,6 +4,7 @@ import '../../../styles/content.css';
 import MediaEntry from "../../../layouts/MediaEntry.astro";
 import ItchEmbed from "../../../components/ItchEmbed.astro";
 import EntryBorder from "../../../components/EntryBorder.astro";
+import VideoPlayer from "../../../components/VideoPlayer.astro"
 
 import MediaImage from "../../../assets/tga-projects/shotgun-parkour-mini.png"
 
@@ -45,17 +46,11 @@ about the games development in detail. Have fun!
 <EntryBorder/>
 
 <MediaEntry mediaSide="right">
-<video
+<VideoPlayer
     slot="media"
-    muted
-    loop
-    playsinline
-    preload="metadata"
-    style="contain"
-    autoPlay
->
-<source src="/shotgun-parkour/the-arsenal.webm" />
-</video>
+    src="/shotgun-parkour/the-arsenal.webm"
+    alt="the arsenal"
+/>
 
 <div slot="content">
 ## The Arsenal
@@ -71,17 +66,11 @@ down a target to reload and keep the momentum going.
 <EntryBorder/>
 
 <MediaEntry mediaSide="left">
-<video
+<VideoPlayer
     slot="media"
-    muted
-    loop
-    playsinline
-    preload="metadata"
-    style="contain"
-    autoPlay
->
-<source src="/shotgun-parkour/camera-behavior.webm" />
-</video>
+    src="/shotgun-parkour/camera-behavior.webm"
+    alt="camera behavior"
+/>
 
 <div slot="content">
 ## Camera Behavior
@@ -98,17 +87,11 @@ Without sacrificing to much distance to plan out your path.
 <EntryBorder/>
 
 <MediaEntry mediaSide="right">
-<video
+<VideoPlayer
     slot="media"
-    muted
-    loop
-    playsinline
-    preload="metadata"
-    style="contain"
-    autoPlay
->
-<source src="/shotgun-parkour/enemies.webm" />
-</video>
+    src="/shotgun-parkour/enemies.webm"
+    alt="enemies"
+/>
 
 <div slot="content">
 ## Enemies emerge
@@ -126,17 +109,11 @@ now be defeated a checkpoint system was also in order.
 <EntryBorder/>
 
 <MediaEntry mediaSide="left">
-<video
+<VideoPlayer
     slot="media"
-    muted
-    loop
-    playsinline
-    preload="metadata"
-    style="contain"
-    autoPlay
->
-<source src="/shotgun-parkour/game-juice.webm" />
-</video>
+    src="/shotgun-parkour/game-juice.webm"
+    alt="game juice"
+/>
 
 <div slot="content">
 ## Game Juice
@@ -151,17 +128,11 @@ Also i found the spare time to add a rocket jet pack.
 <EntryBorder/>
 
 <MediaEntry mediaSide="right">
-<video
+<VideoPlayer
     slot="media"
-    muted
-    loop
-    playsinline
-    preload="metadata"
-    style="contain"
-    autoPlay
->
-<source src="/shotgun-parkour/missile-escape.webm" />
-</video>
+    src="/shotgun-parkour/missile-escape.webm"
+    alt="missile escape"
+/>
 
 <div slot="content">
 ## Putting it all together
