@@ -1,10 +1,9 @@
 ---
 interface Props {
     id: string;
-    title: string;
 }
 
-const { id, title } = Astro.props;
+const { id } = Astro.props;
 ---
 <style>
 .youtube-iframe {
@@ -17,7 +16,6 @@ const { id, title } = Astro.props;
 <iframe
     class="youtube-iframe"
     src={`https://www.youtube.com/embed/${id}`}
-    title={title}
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen
 />
