@@ -16,6 +16,11 @@ import Slide6x1 from "../../assets/projects/jelly-physics/slide-6-1.png"
 import Slide6x2 from "../../assets/projects/jelly-physics/slide-6-2.png"
 import Slide7x1 from "../../assets/projects/jelly-physics/slide-7-1.png"
 
+import PosterDistanceConstraint from "../../assets/projects/jelly-physics/video-posters/distance-constraint.png"
+import PosterAreaConstraint from "../../assets/projects/jelly-physics/video-posters/area-constraint.png"
+import PosterXPBD from "../../assets/projects/jelly-physics/video-posters/xpbd.png"
+import PosterBroadPhase from "../../assets/projects/jelly-physics/video-posters/broad-phase.png"
+
 
 <MediaEntry mediaSide="right">
 <video
@@ -117,6 +122,7 @@ to apply forces and acceleration.
 <VideoPlayer
   src="/jelly-physics/distance-constraint.webm"
   alt="distance constraint"
+  poster={PosterDistanceConstraint.src}
 />
 </div>
 
@@ -154,6 +160,7 @@ would need to be performed. In other words, this is an iterative distance constr
 <VideoPlayer
   src="/jelly-physics/area-constraint.webm"
   alt="area constraint"
+  poster={PosterAreaConstraint.src}
 />
 </div>
 
@@ -188,6 +195,7 @@ with fewer iterations.
 <VideoPlayer
   src="/jelly-physics/xpbd.webm"
   alt="area constraint"
+  poster={PosterXPBD.src}
 />
 </div>
 
@@ -221,6 +229,7 @@ solver iteration counts.
 <VideoPlayer
   src="/jelly-physics/broad-phase.webm"
   alt="distance constraint"
+  poster={PosterBroadPhase.src}
 />
 </div>
 
