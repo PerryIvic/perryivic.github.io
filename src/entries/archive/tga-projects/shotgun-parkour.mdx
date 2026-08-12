@@ -6,7 +6,13 @@ import ItchEmbed from "../../../components/ItchEmbed.astro";
 import EntryBorder from "../../../components/EntryBorder.astro";
 import VideoPlayer from "../../../components/VideoPlayer.astro"
 
-import MediaImage from "../../../assets/tga-projects/shotgun-parkour-mini.png"
+import MediaImage from "../../../assets/tga-projects/shotgun-parkour/shotgun-parkour-mini.png"
+
+import PosterTheArsenal from "../../../assets/tga-projects/shotgun-parkour/video-posters/the-arsenal.png"
+import PosterCameraBehavior from "../../../assets/tga-projects/shotgun-parkour/video-posters/camera-behavior.png"
+import PosterEnemies from "../../../assets/tga-projects/shotgun-parkour/video-posters/enemies.png"
+import PosterGameJuice from "../../../assets/tga-projects/shotgun-parkour/video-posters/game-juice.png"
+import PosterMissileEscape from "../../../assets/tga-projects/shotgun-parkour/video-posters/missile-escape.png"
 
 <MediaEntry mediaSide="right">
 <div slot="media">
@@ -50,6 +56,7 @@ about the games development in detail. Have fun!
     slot="media"
     src="/shotgun-parkour/the-arsenal.webm"
     alt="the arsenal"
+    poster={PosterTheArsenal.src}
 />
 
 <div slot="content">
@@ -70,6 +77,7 @@ down a target to reload and keep the momentum going.
     slot="media"
     src="/shotgun-parkour/camera-behavior.webm"
     alt="camera behavior"
+    poster={PosterCameraBehavior.src}
 />
 
 <div slot="content">
@@ -91,6 +99,7 @@ Without sacrificing to much distance to plan out your path.
     slot="media"
     src="/shotgun-parkour/enemies.webm"
     alt="enemies"
+    poster={PosterEnemies.src}
 />
 
 <div slot="content">
@@ -113,6 +122,7 @@ now be defeated a checkpoint system was also in order.
     slot="media"
     src="/shotgun-parkour/game-juice.webm"
     alt="game juice"
+    poster={PosterGameJuice.src}
 />
 
 <div slot="content">
@@ -132,6 +142,7 @@ Also i found the spare time to add a rocket jet pack.
     slot="media"
     src="/shotgun-parkour/missile-escape.webm"
     alt="missile escape"
+    poster={PosterMissileEscape.src}
 />
 
 <div slot="content">
