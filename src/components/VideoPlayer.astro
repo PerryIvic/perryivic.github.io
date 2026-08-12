@@ -2,9 +2,10 @@
 interface Props {
   src: string;
   alt?: string;
+  poster?: string;
 }
 
-const { src, alt = "" } = Astro.props;
+const { src, alt = "", poster } = Astro.props;
 ---
 
 <style>
@@ -44,6 +45,7 @@ const { src, alt = "" } = Astro.props;
     muted
     playsinline
     preload="none"
+    poster={poster}
   >
     <source src={src} type="video/webm" />
     {alt}
@@ -62,9 +64,10 @@ const { src, alt = "" } = Astro.props;
   document.querySelectorAll(".video-wrapper").forEach((wrapper) => {
     const video = wrapper.querySelector("video") as HTMLVideoElement | null;
     const button = wrapper.querySelector(".play-button") as HTMLButtonElement | null;
+
     if (!video || !button) {
       console.error("VideoPlayer: missing video or play button", { wrapper });
-      return
+      return;
     }
 
     button.addEventListener("click", async () => {
@@ -90,4 +93,3 @@ const { src, alt = "" } = Astro.props;
     });
   });
 </script>
-
